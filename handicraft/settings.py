@@ -47,7 +47,7 @@ DEBUG = env("DEBUG")
 # DEBUG = False
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env.list('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
 
 # Application definition
 
