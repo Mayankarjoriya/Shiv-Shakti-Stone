@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import environ
+import urllib.parse as urlparse
 
 # Manually load .env file
 dotenv_path = os.path.join(Path(__file__).resolve().parent, '.env')
@@ -99,16 +100,41 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+DATABASE_URL = env('DATABASE_URL')
+
+
+
+if DATABASE_URL:
+
+
+    urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(DATABASE_URL , default = "")
+
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'stonecraft',
-        'USER':'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'NAME': url.path[1:],
+        'USER':url.username,
+        'PASSWORD': url.password,
+        'HOST': url.hostname,
+        'PORT': url.port
     }
 }
+else:
+     DATABASES = {
+
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "StoneCraft",
+        'USER': "postgres",
+        'PASSWORD': '123',
+        'HOST': "localhost",
+        'PORT': "5432"
+    }
+}
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -147,10 +173,20 @@ AUTH_PASSWORD_VALIDATORS = [
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env.int('EMAIL_PORT')
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
+
+# # Email safer conf
+# EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
+# EMAIL_HOST = env("EMAIL_HOST", default="")
+# EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+# EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+# EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+# DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
+
 
 
 # Internationalization
