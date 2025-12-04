@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        .container { padding: 20px; }
+        h2 { color: #2c3e50; }
+        p { margin: 5px 0; }
+        .footer { margin-top: 20px; font-size: 0.9em; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>New Contact Request</h2>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Mobile:</strong> {{ mobile }}</p>
+        <p><strong>Message:</strong> {{ message }}</p>
+        
+        {% if image_url %}
+        <hr>
+        <img src="{{ image_url }}" alt="Attachment" width="200">
+        {% endif %}
+        
+        <div class="footer">
+            <p>This message was generated from the Shiv Shakti Stone.</p>
+        </div>
+    </div>
+</body>
+</html>

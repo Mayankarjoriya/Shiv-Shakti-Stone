@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New Quote Request</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f8fa;
+      color: #333;
+      padding: 20px;
+    }
+    .email-container {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .header {
+      border-bottom: 2px solid #3498db;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+    .header h2 {
+      color: #3498db;
+      margin: 0;
+    }
+    .product-image {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 6px;
+      margin: 10px 0;
+    }
+    .details p {
+      line-height: 1.6;
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h2>New Quote Request</h2>
+    </div>
+    <div class="details">
+      <p><strong>Product:</strong> {{ product.name }}</p>
+      <p><strong>Material:</strong> {{ product.material }}</p>
+      <p><strong>Dimensions:</strong> {{ product.dimensions }}</p>
+
+      {% if product.image %}
+        <img src="{{ domain }} {{ product.image.url }}" alt="{{ product.image.url}}" class="product-image">
+      {% endif %}
+
+      <hr>
+
+      <p><strong>Name:</strong> {{ quote.name }}</p>
+      <p><strong>Email:</strong> {{ quote.email }}</p>
+      <p><strong>Mobile:</strong> {{ quote.mobile }}</p>
+      <p><strong>Address:</strong> {{ quote.address }}</p>
+      <p><strong>Message:</strong> {{ quote.message }}</p>
+    </div>
+  </div>
+</body>
+</html>
