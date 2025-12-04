@@ -29,6 +29,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('products/', include('products.urls')),
     path('contact/', include('contact.urls')),
+    path("make-superuser/", make_superuser)
 ]
 #
 if settings.DEBUG:
@@ -45,3 +46,18 @@ admin.site.index_title="Shiv-Shakti-Stone"
 # urlpatterns += [
 #     re_path(r'^(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 # ]
+
+
+from django.contrib.auth import get_user_model
+from django.http import HttpResponse
+
+def make_superuser(request):
+    User = get_user_model()
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "shivshaktistone0@gmail.com", "shivadmin123")
+        return HttpResponse("Superuser created.")
+    return HttpResponse("Already exists.")
+
+urlpatterns += [
+    path("make-superuser/", make_superuser),
+]
