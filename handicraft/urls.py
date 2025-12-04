@@ -24,8 +24,8 @@ from django.conf.urls.static import static
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 
-
-
+def healthcheck(request):
+    return HttpResponse("OK")
 
 
 urlpatterns = [
@@ -33,6 +33,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('products/', include('products.urls')),
     path('contact/', include('contact.urls')),
+    path("healthcheck/", healthcheck),
     
 ]
 #
