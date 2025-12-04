@@ -108,7 +108,7 @@ if DATABASE_URL:
 
 
     urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(DATABASE_URL , default = "")
+    url = urlparse.urlparse(DATABASE_URL )
 
     DATABASES = {
     'default': {
