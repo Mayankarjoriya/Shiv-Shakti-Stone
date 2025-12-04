@@ -1,0 +1,150 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Shiv Shakti Stone | Home{% endblock %}
+
+{% block content %}
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content fade-in">
+                {% if hero %}
+                    <h1>{{ hero.title|safe }}</h1>
+                    <p>{{ hero.subtitle }}</p>
+                {% else %}
+                    <h1>Crafted Stones For <span>Your Space</span></h1>
+                    <p>Explore our premium handmade stone products. We blend traditional art with modern aesthetics to create unique designs for your home and business.</p>
+                {% endif %}
+                <div class="btn-container">
+                    <a href="{{ hero.button_link|default:'/products/' }}" class="btn btn-primary">{{ hero.button_text|default:'Browse Products' }}</a>
+                    <a href="{{ hero.secondary_button_link|default:'#categories' }}" class="btn btn-secondary">{{ hero.secondary_button_text|default:'Our Categories' }}</a>
+                </div>
+            </div>
+            <div class="hero-image fade-in">
+                {% if hero.video %}
+                    <video autoplay muted loop playsinline class="hero-media">
+                        <source src="{{ hero.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% elif hero.image %}
+                    <img src="{{ hero.image.url }}" alt="Beautiful crafted stone" class="hero-media">
+                {% else %}
+                    <img src="{% static 'images/hero-image.jpg' %}" alt="Beautiful crafted stone" class="hero-media">
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section (Replaced Features) -->
+    <section class="features" id="categories"> <!-- Kept 'features' class for styling, but changed ID -->
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Product Categories</h2>
+                <p>Discover the quality and craftsmanship in every piece</p>
+            </div>
+            <div class="row">
+                
+                <!-- *** THIS IS YOUR DJANGO LOOP *** -->
+                {% for category in categories %}
+                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                    {% if category.image %}
+                        <img src="{{ category.image.url }}" 
+                             onerror="this.src='https://placehold.co/400x300/a1887f/ffffff?text={{ category.name|urlencode }}'" 
+                             alt="{{ category.name }}" 
+                             class="category-image">
+                    {% else %}
+                        <div class="feature-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                    {% endif %}
+                    
+                    <h3>{{ category.name }}</h3>
+                    
+                    {% if category.description %}
+                        <p>{{ category.description|truncatewords:15 }}</p>
+                    {% else %}
+                        <p>Explore our collection of {{ category.name }}.</p>
+                    {% endif %}
+
+                    <!-- Assumed 'category_detail' URL name with slug -->
+                    <a href="{% url 'product_list' category.slug %}" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">View Products</a>
+                </div>
+                {% empty %}
+                <div class="col" style="text-align: center; grid-column: 1 / -1;">
+                    <p>No product categories are available at the moment. Please check back soon!</p>
+                </div>
+                {% endfor %}
+                <!-- *** END OF DJANGO LOOP *** -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Elements (Re-themed for Stone) -->
+    <section class="interactive-section" id="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Services</h2>
+                <p>Quality and precision you can trust</p>
+            </div>
+            <div class="interactive-grid">
+                <div class="interactive-card fade-in">
+                    <div class="card-content">
+                        <h3>Custom Orders</h3>
+                        <p>Have a unique vision? We can craft custom stone pieces to your exact specifications.</p>
+                        <button class="btn btn-outline">Request a Quote</button>
+                    </div>
+                </div>
+                <div class="interactive-card fade-in">
+                    <div class="card-content">
+                        <h3>Expert Consultation</h3>
+                        <p>Our specialists can help you choose the perfect stone for your project's needs.</p>
+                        <a class="btn btn-outline" href="{% url 'contact' %}">Book a Call</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    {% comment %} <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Trusted by Architects & Homeowners</h2>
+                <p>Hear from our satisfied customers</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial fade-in">
+                    <div class="testimonial-content">
+                        "The quality from Shiv Shakti Stone is unmatched. The marble countertops transformed my kitchen. Highly recommend their craftsmanship!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-img">
+                            <img src="{% static 'images/client-1.jpg' %}" 
+                                 onerror="this.src='https://placehold.co/60x60/8d6e63/ffffff?text=A.K.'"
+                                 alt="Amit Kumar">
+                        </div>
+                        <div class="author-info">
+                            <h4>Amit Kumar</h4>
+                            <p>Homeowner, Delhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- CTA Section -->
+    {% comment %} <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Ready to Start Your Project?</h2>
+            <p class="fade-in">Let us help you bring your vision to life with the finest stone products.</p>
+            <a href="{% url 'contact' %}" class="btn btn-light fade-in">Get In Touch</a>
+        </div>
+    </section> {% endcomment %}
+
+{% endblock %}

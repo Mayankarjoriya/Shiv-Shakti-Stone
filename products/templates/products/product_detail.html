@@ -1,0 +1,121 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | StoneCraft{% endblock %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block content %}
+<section class="product-detail-section">
+    <div class="container">
+        <div class="product-detail-layout">
+            <!-- Product Gallery -->
+            <div class="product-gallery">
+                <div class="main-image-wrapper">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }} main image" id="mainProductImage">
+                    {% else %}
+                        <img src="https://placehold.co/600x450/eee/ccc?text=No+Image" alt="No image available" id="mainProductImage">
+                    {% endif %}
+                </div>
+                <div class="thumbnail-gallery">
+                    {% if product.image %}
+                    <div class="thumbnail-item active">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail" onclick="changeImage('{{ product.image.url }}', this)">
+                    </div>
+                    {% endif %}
+                    {% for img in images %}
+                    <div class="thumbnail-item">
+                        <img src="{{ img.image.url }}" alt="{{ product.name }} thumbnail {{ forloop.counter }}" onclick="changeImage('{{ img.image.url }}', this)">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-main-title">{{ product.name }}</h1>
+                <p class="product-main-price">Rs {{ product.price }} / Piece</p>
+                <p class="product-short-desc">{{ product.description|linebreaks }}</p>
+
+                <div class="product-specs">
+                    <h3 class="specs-title">Specifications</h3>
+                    <ul>
+                        {% if product.material %}<li><strong>Material:</strong> {{ product.material }}</li>{% endif %}
+                        {% if product.color %}<li><strong>Color:</strong> {{ product.color }}</li>{% endif %}
+                        {% if product.shape %}<li><strong>Shape:</strong> {{ product.shape }}</li>{% endif %}
+                        {% if product.dimensions %}<li><strong>Dimensions:</strong> {{ product.dimensions }}</li>{% endif %}
+                        {% if product.size %}<li><strong>Size:</strong> {{ product.size }}</li>{% endif %}
+                        {% if product.height %}<li><strong>Height:</strong> {{ product.height }}</li>{% endif %}
+                        {% if product.usage_application %}<li><strong>Usage:</strong> {{ product.usage_application }}</li>{% endif %}
+                        {% if product.model_number %}<li><strong>Model No:</strong> {{ product.model_number }}</li>{% endif %}
+                        {% if product.country_of_origin %}<li><strong>Origin:</strong> {{ product.country_of_origin }}</li>{% endif %}
+                        {% if product.brochure %}<li><strong>Brochure:</strong> {{ product.brochure }}</li>{% endif %}
+                        {% if product.production_capicity %}<li><strong>Production Capicity:</strong> {{ product.production_capicity }}</li>{% endif %}
+
+                        {% for feature in features %}
+                        <li><strong>{{ feature.name }}:</strong> {{ feature.value }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quoteModal">
+                    Request Quote
+                </button>
+            </div>
+        </div>
+
+        <!-- You can add related products or more details here -->
+
+        </div>
+    </div>
+</section>
+
+<!-- Quote Request Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="#">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" name="mobile" class="form-control" placeholder="Your Mobile" required>
+          </div>
+          <div class="mb-3">
+            <input type="text" name="address" class="form-control" placeholder="Your Location" required>
+          </div>
+          <div class="mb-3">
+            <textarea name="message" class="form-control" placeholder="Message (optional)"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Send Request</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+ 
+
+<script>
+function changeImage(imageUrl, thumbnailElement) {
+    // Change the main image source
+    document.getElementById('mainProductImage').src = imageUrl;
+
+    // Update the active state for thumbnails
+    const thumbnails = document.querySelectorAll('.thumbnail-item');
+    thumbnails.forEach(item => item.classList.remove('active'));
+    thumbnailElement.parentElement.classList.add('active');
+}
+</script>
+{% endblock %}
