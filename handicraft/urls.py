@@ -1,65 +1,43 @@
-"""
-URL configuration for handicraft project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-# from django.urls import re_path
-# from django.views.static import serve
-
-from django.contrib.auth import get_user_model
 from django.http import HttpResponse
+from django.contrib.auth import get_user_model
+
 
 def healthcheck(request):
     return HttpResponse("OK")
 
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('products/', include('products.urls')),
-    path('contact/', include('contact.urls')),
-    path("/healthz/", healthcheck),
-    
-]
-#
-#if settings.DEBUG:
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-admin.site.site_header= "Shiv-Shakti-Stone"
-admin.site.site_title="Shiv-Shakti-Stone"
-admin.site.index_title="Shiv-Shakti-Stone"
-
-
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# #
-# urlpatterns += [
-#     re_path(r'^(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-# ]
-
-
 def make_superuser(request):
     User = get_user_model()
     if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser("admin", "shivshaktistone0@gmail.com", "shivadmin123")
+        User.objects.create_superuser(
+            "admin",
+            "shivshaktistone0@gmail.com",
+            "shivadmin123",
+        )
         return HttpResponse("Superuser created.")
     return HttpResponse("Already exists.")
 
-urlpatterns += [
-    path("make-superuser/", make_superuser),
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("core.urls")),
+    path("products/", include("products.urls")),
+    path("contact/", include("contact.urls")),
+    path("healthz/", healthcheck),          # yahan slash se start nahi hona chahiye
+    path("make-superuser/", make_superuser) # ya isko ab delete bhi kar sakte ho
 ]
+
+# MEDIA files (admin se upload wali images)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# STATIC files agar chaho (usually whitenoise handle kar raha hoga)
+# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+admin.site.site_header = "Shiv-Shakti-Stone"
+admin.site.site_title = "Shiv-Shakti-Stone"
+admin.site.index_title = "Shiv-Shakti-Stone"
