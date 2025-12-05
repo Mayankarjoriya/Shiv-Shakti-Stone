@@ -31,8 +31,8 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
 ]
 #
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#if settings.DEBUG:
+ #   urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 admin.site.site_header= "Shiv-Shakti-Stone"
@@ -40,7 +40,7 @@ admin.site.site_title="Shiv-Shakti-Stone"
 admin.site.index_title="Shiv-Shakti-Stone"
 
 
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # #
 # urlpatterns += [
 #     re_path(r'^(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
