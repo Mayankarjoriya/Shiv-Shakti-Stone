@@ -36,7 +36,7 @@ urlpatterns = [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-    path("media/<path:path>", serve {"document_root": settings.MEDIA_ROOT}),
+    path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
 ]
 # STATIC files agar chaho (usually whitenoise handle kar raha hoga)
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
