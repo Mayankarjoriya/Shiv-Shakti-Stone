@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contact',
     'products',
+    'django.contrib.sitemaps',
 
 ]
 
@@ -172,16 +173,24 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
+# --- SendGrid Configuration ---
+EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# Render Environment Variables se API key fetch karein:
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
-# Environment variables se values lein
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# Baaki settings
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL') # Aapka verified domain email
+SERVER_EMAIL = DEFAULT_FROM_EMAIL
+
+
+# # Environment variables se values lein
+# EMAIL_HOST = os.environ.get('EMAIL_HOST')
+# EMAIL_PORT = os.environ.get('EMAIL_PORT')
+# EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # # Email safer conf
 # EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")

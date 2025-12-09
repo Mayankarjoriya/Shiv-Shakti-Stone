@@ -94,8 +94,9 @@ def product_detail(request, slug):
 
             email = EmailMultiAlternatives(subject,
                                             html_message,
-                                            settings.EMAIL_HOST_USER,
-                                            [admin_email])
+                                            settings.DEFAULT_FROM_EMAIL,
+                                            [admin_email],
+                                            )
 
             email.content_subtype = "html"
             email.send(fail_silently=False)

@@ -5,7 +5,13 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 from django.views.static import serve
+from django.contrib import sitemaps
+from django.contrib.sitemaps.views import sitemap
+from core.sitemaps import StaticViewSitemap
 
+sitemaps_dict = {
+    'static': StaticViewSitemap,
+}
 
 def healthcheck(request):
     return HttpResponse("OK")
@@ -37,6 +43,10 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
     path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
+]
+
+urlpatterns += [
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps_dict}, name="django.contrib.sitemaps.views.sitemap"),
 ]
 # STATIC files agar chaho (usually whitenoise handle kar raha hoga)
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -47,8 +47,9 @@ def contact(request):
 
         email_msg = EmailMultiAlternatives(subject,
                                             message,
-                                              settings.EMAIL_HOST_USER,
-                                                [admin_email])
+                                              settings.DEFAULT_FROM_EMAIL,
+                                                [admin_email],
+                                                fail_silently=False,)
         email_msg.attach_alternative(html_content, "text/html")
 
         email_msg.send()
