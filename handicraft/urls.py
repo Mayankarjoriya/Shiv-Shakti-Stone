@@ -8,6 +8,25 @@ from django.views.static import serve
 from django.contrib import sitemaps
 from django.contrib.sitemaps.views import sitemap
 from core.sitemaps import StaticViewSitemap
+from django.core.files.base import ContentFile
+from django.http import HttpResponse
+import requests
+
+
+def Test(request):
+    r = requests.get("https://via.placeholder.com/150")
+    if r.status_code != 200:
+        return HttpResponse("Failed to download image", status=500)
+        img = ContentFile(r.content, name="test.jpg")
+    
+    try:
+        import Cloudinary.uploader
+        Cloudinary.uploader.upload(img, folder="test")
+        return HttpResponse("Image uploaded successfully", status=200)
+    except Exception as e:
+        return HttpResponse(f"uploaded failed {e}", status=500)
+
+
 
 sitemaps_dict = {
     'static': StaticViewSitemap,
