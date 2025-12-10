@@ -226,7 +226,26 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Cloudinary Configuration
-CLOUDINARY_STORAGE = os.environ.get('CLOUDINARY_URL')
+# Cloudinary Configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
+if CLOUDINARY_URL:
+    try:
+        import cloudinary.utils
+        _, config = cloudinary.utils.cloudinary_url(CLOUDINARY_URL)
+        CLOUDINARY_STORAGE.update({
+            'CLOUD_NAME': config.get('cloud_name'),
+            'API_KEY': config.get('api_key'),
+            'API_SECRET': config.get('api_secret'),
+        })
+    except Exception as e:
+        print(f"Error parsing CLOUDINARY_URL: {e}")
+
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
