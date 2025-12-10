@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     'contact',
     'products',
     'django.contrib.sitemaps',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 
@@ -221,6 +223,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Cloudinary Configuration
+CLOUDINARY_STORAGE = os.environ.get('CLOUDINARY_STORAGE')
+    
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 STATICFILES_DIRS = [
