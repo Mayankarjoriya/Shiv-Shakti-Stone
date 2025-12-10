@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from products.models import Category
 from .models import HeroSection
-from django.core.files.storage import ContentFile
+from django.core.files.base import ContentFile
 from django.http import HttpResponse
 import requests
 
