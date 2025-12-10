@@ -11,20 +11,28 @@ from core.sitemaps import StaticViewSitemap
 from django.core.files.base import ContentFile
 from django.http import HttpResponse
 import requests
-
+from io import BytesIO
 
 def Test(request):
-    r = requests.get("https://via.placeholder.com/150")
-    if r.status_code != 200:
-        return HttpResponse("Failed to download image", status=500)
-        img = ContentFile(r.content, name="test.jpg")
-    
     try:
-        import Cloudinary.uploader
-        Cloudinary.uploader.upload(img, folder="test")
-        return HttpResponse("Image uploaded successfully", status=200)
+        # lazy import so if cloudinary missing we catch it
+        import cloudinary.uploader
+        from PIL import Image
+
+        # create a small red 10x10 PNG in memory
+        buf = BytesIO()
+        Image.new("RGB", (10, 10), color=(255, 0, 0)).save(buf, format="PNG")
+        buf.seek(0)
+        content = ContentFile(buf.read(), name="sample-test.png")
+
+        # upload to cloudinary
+        res = cloudinary.uploader.upload(content, folder="test_uploads")
+        # return the public URL if success
+        url = res.get("secure_url") or res.get("url") or str(res)
+        return HttpResponse(f"Upload OK — {url}")
     except Exception as e:
-        return HttpResponse(f"uploaded failed {e}", status=500)
+        # return full error so we can debug quickly
+        return HttpResponse(f"Upload failed: {repr(e)}", status=500)
 
 
 
