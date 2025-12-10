@@ -226,8 +226,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Cloudinary Configuration
-CLOUDINARY_STORAGE = os.environ.get('CLOUDINARY_STORAGE')
-    
+CLOUDINARY_STORAGE = os.environ.get('CLOUDINARY_URL')
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
