@@ -63,7 +63,7 @@ urlpatterns = [
     path("contact/", include("contact.urls")),
     path("healthz/", healthcheck),          # yahan slash se start nahi hona chahiye
     path("make-superuser/", make_superuser),
-    path("Cloudinary/test/", Test), # ya isko ab delete bhi kar sakte ho
+    path("Cloudinary-test/", Test), # ya isko ab delete bhi kar sakte ho
 ]
 
 # MEDIA files (admin se upload wali images)
