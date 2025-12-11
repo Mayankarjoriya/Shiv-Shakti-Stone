@@ -239,9 +239,9 @@ if CLOUDINARY_URL:
         import cloudinary.utils
         _, config = cloudinary.utils.cloudinary_url(CLOUDINARY_URL)
         CLOUDINARY_STORAGE.update({
-            'CLOUD_NAME': config.get('cloud_name'),
-            'API_KEY': config.get('api_key'),
-            'API_SECRET': config.get('api_secret'),
+            'CLOUD_NAME': config.get('dmvs6imnb'),
+            'API_KEY': config.get('696558283181139'),
+            'API_SECRET': config.get('OMIwToYOukgMBK-VJi4umUIMRv4'),
         })
     except Exception as e:
         print(f"Error parsing CLOUDINARY_URL: {e}")
