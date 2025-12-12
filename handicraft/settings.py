@@ -55,20 +55,19 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',
+    'cloudinary_storage',  # Add this LINE
+    'django.contrib.staticfiles', # Ensure this is below cloudinary_storage
+    'cloudinary',          # Add this LINE
     'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'contact',
     'products',
-    'django.contrib.sitemaps',
-    'cloudinary',
-    'cloudinary_storage',
-
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
