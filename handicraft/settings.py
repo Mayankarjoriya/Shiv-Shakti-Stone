@@ -15,7 +15,7 @@ from pathlib import Path
 import os
 import environ
 import urllib.parse as urlparse
-import Cloudinary
+import cloudinary
 
 # Manually load .env file
 dotenv_path = os.path.join(Path(__file__).resolve().parent, '.env')
