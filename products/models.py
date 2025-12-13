@@ -31,7 +31,7 @@ class Product(models.Model):
     shape = models.CharField(blank=True, null=True)
     height = models.CharField(blank=True, null=True)
     usage_application = models.CharField(blank=True, null=True)
-    model_number= models.CharField()
+    model_number= models.CharField(max_length=1000)
     country_of_origin = models.CharField(max_length=100, blank=True, null=True)
     production_capacity = models.CharField(max_length=200, blank=True, null=True)
     delivery_time = models.CharField(max_length=200, blank=True, null=True)

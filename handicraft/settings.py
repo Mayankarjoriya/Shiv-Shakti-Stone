@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import environ
+import urllib.parse as urlparse
 
 import cloudinary
 
@@ -107,19 +108,43 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}'),
-        conn_max_age=600,  # Optional: set connection longevity
-        conn_health_checks=True, # Optional: enable health checks
-    )
-}
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}'),
+#         conn_max_age=600,  # Optional: set connection longevity
+#         conn_health_checks=True, # Optional: enable health checks
+#     )
+# }
 
-# Optional: ensure postgres engine is specified if not using DATABASE_URL format consistently
-if 'default' in DATABASES and 'ENGINE' not in DATABASES['default']:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+# # Optional: ensure postgres engine is specified if not using DATABASE_URL format consistently
+# if 'default' in DATABASES and 'ENGINE' not in DATABASES['default']:
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 
+DATABASE_URL = env("DATABASE_URL", default="")
+
+if DATABASE_URL:
+    urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(DATABASE_URL)
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": url.path[1:],
+            "USER": url.username,
+            "PASSWORD": url.password,
+            "HOST": url.hostname,
+            "PORT": url.port or 5432,
+        }
+    }
+else:
+    # Local development fallback
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # DATABASES = {
 #     'default': {
