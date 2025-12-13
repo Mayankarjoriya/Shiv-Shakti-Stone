@@ -107,17 +107,17 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=env('DATABASE_URL',
-        ),
-        conn_max_age=600
+        default=os.environ.get('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}'),
+        conn_max_age=600,  # Optional: set connection longevity
+        conn_health_checks=True, # Optional: enable health checks
     )
 }
+
+# Optional: ensure postgres engine is specified if not using DATABASE_URL format consistently
+if 'default' in DATABASES and 'ENGINE' not in DATABASES['default']:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 
 
