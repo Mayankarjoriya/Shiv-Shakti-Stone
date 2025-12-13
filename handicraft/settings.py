@@ -113,7 +113,8 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=env('DATABASE_URL', default='postgres://postgres:123@localhost:5432/StoneCraft'),
+        default=env('DATABASE_URL',
+        ),
         conn_max_age=600
     )
 }
