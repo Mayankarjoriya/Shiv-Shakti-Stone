@@ -15,6 +15,7 @@ from pathlib import Path
 import os
 import environ
 import urllib.parse as urlparse
+import cloudinary
 
 # Manually load .env file
 dotenv_path = os.path.join(Path(__file__).resolve().parent, '.env')
@@ -48,28 +49,37 @@ DEBUG = env("DEBUG")
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'jazzmin',
+<<<<<<< HEAD
     'cloudinary',
     'cloudinary_storage',
+=======
+    'cloudinary_storage',
+    'cloudinary',# Add this LINE
+    'django.contrib.staticfiles', # Ensure this is below cloudinary_storage             
+>>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
     'core',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'contact',
     'products',
+<<<<<<< HEAD
     'django.contrib.sitemaps',
 
 
+=======
+>>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -222,6 +232,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
    
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -238,6 +249,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Cloudinary Configuration
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+=======
+>>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
 
 
 CLOUDINARY_STORAGE = {
@@ -245,7 +258,22 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
+    
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+
+if DEBUG is False:
+    STATICFILES_DIRS = [ BASE_DIR / 'static' ]
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 

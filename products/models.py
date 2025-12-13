@@ -42,7 +42,7 @@ class Product(models.Model):
     dimensions = models.CharField(max_length=120, blank=True)
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to='product', blank=True, null=True)
+    image = models.ImageField(upload_to='product/gallery/', blank=True, null=True)
 
     class Meta:
         ordering = ('-is_featured', '-created_at', 'name')
