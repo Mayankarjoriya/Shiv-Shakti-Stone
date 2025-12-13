@@ -15,7 +15,6 @@ from pathlib import Path
 import os
 import environ
 import urllib.parse as urlparse
-
 import cloudinary
 
 # Manually load .env file
@@ -52,7 +51,8 @@ DEBUG = env("DEBUG")
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split(",")
+
 
 
 # Application definition
@@ -121,24 +121,21 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 #     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 
+# =========================
+# DATABASE CONFIG (FINAL)
+# =========================
+
 DATABASE_URL = env("DATABASE_URL", default="")
 
 if DATABASE_URL:
-    urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(DATABASE_URL)
-
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": url.path[1:],
-            "USER": url.username,
-            "PASSWORD": url.password,
-            "HOST": url.hostname,
-            "PORT": url.port or 5432,
-        }
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
 else:
-    # Local development fallback
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -230,36 +227,28 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Cloudinary Configuration
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+#     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+#     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+# }
+  
+
+# if DEBUG is False:
+#     STATICFILES_DIRS = [ BASE_DIR / 'static' ]
+#     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# else:
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, 'static'),
+#     ]
+#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-
-if DEBUG is False:
-    STATICFILES_DIRS = [ BASE_DIR / 'static' ]
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-    
-else:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static'),
-    ]
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 
 
