@@ -56,14 +56,9 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'jazzmin',
-<<<<<<< HEAD
-    'cloudinary',
     'cloudinary_storage',
-=======
-    'cloudinary_storage',
-    'cloudinary',# Add this LINE
-    'django.contrib.staticfiles', # Ensure this is below cloudinary_storage             
->>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
+    'cloudinary', # Add this LINE
+    'django.contrib.staticfiles', # Ensure this is below cloudinary_storage
     'core',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -72,12 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'contact',
     'products',
-<<<<<<< HEAD
     'django.contrib.sitemaps',
-
-
-=======
->>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
 ]
 
 
@@ -232,25 +222,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-<<<<<<< HEAD
-   
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
- 
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 # Cloudinary Configuration
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-=======
->>>>>>> dcb3316ea5b7352e383c8a121f2f72f1ea710df6
 
 
 CLOUDINARY_STORAGE = {

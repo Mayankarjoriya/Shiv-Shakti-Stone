@@ -13,26 +13,6 @@ from django.http import HttpResponse
 import requests
 from io import BytesIO
 
-def Test(request):
-    try:
-        # lazy import so if cloudinary missing we catch it
-        import cloudinary.uploader
-        from PIL import Image
-
-        # create a small red 10x10 PNG in memory
-        buf = BytesIO()
-        Image.new("RGB", (10, 10), color=(255, 0, 0)).save(buf, format="PNG")
-        buf.seek(0)
-        content = ContentFile(buf.read(), name="sample-test.png")
-
-        # upload to cloudinary
-        res = cloudinary.uploader.upload(content, folder="test_uploads")
-        # return the public URL if success
-        url = res.get("secure_url") or res.get("url") or str(res)
-        return HttpResponse(f"Upload OK — {url}")
-    except Exception as e:
-        # return full error so we can debug quickly
-        return HttpResponse(f"Upload failed: {repr(e)}", status=500)
 
 
 
@@ -61,9 +41,8 @@ urlpatterns = [
     path("", include("core.urls")),
     path("products/", include("products.urls")),
     path("contact/", include("contact.urls")),
-    path("healthz/", healthcheck),          # yahan slash se start nahi hona chahiye
+    path("healthz/", healthcheck),
     path("make-superuser/", make_superuser),
-    path("Cloudinary-test/", Test), # ya isko ab delete bhi kar sakte ho
 ]
 
 # MEDIA files (admin se upload wali images)

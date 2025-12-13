@@ -40,7 +40,7 @@ def contact(request):
         })
 
         # send email to admin
-        admin_email = 'mayankrajoriya2004@gmail.com'
+        admin_email = settings.SERVER_EMAIL
 
         subject = f"New contact meesage from- {name}"
 
