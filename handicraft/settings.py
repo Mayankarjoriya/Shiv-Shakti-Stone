@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 import environ
-import urllib.parse as urlparse
+
 import cloudinary
 
 # Manually load .env file
@@ -30,6 +30,8 @@ try:
                 os.environ.setdefault(key, value)
 except FileNotFoundError:
     pass
+
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -106,37 +108,14 @@ WSGI_APPLICATION = 'handicraft.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASE_URL = env('DATABASE_URL')
+# Database
+# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-
-
-if DATABASE_URL:
-
-
-    urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(DATABASE_URL )
-
-    DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': url.path[1:],
-        'USER':url.username,
-        'PASSWORD': url.password,
-        'HOST': url.hostname,
-        'PORT': url.port
-    }
-}
-else:
-     DATABASES = {
-
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "StoneCraft",
-        'USER': "postgres",
-        'PASSWORD': '123',
-        'HOST': "localhost",
-        'PORT': "5432"
-    }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=env('DATABASE_URL', default='postgres://postgres:123@localhost:5432/StoneCraft'),
+        conn_max_age=600
+    )
 }
 
 
