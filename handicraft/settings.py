@@ -15,6 +15,9 @@ from pathlib import Path
 import os
 import environ
 import cloudinary
+import dj_database_url
+
+
 
 # Manually load .env file
 dotenv_path = os.path.join(Path(__file__).resolve().parent, '.env')
@@ -30,13 +33,41 @@ try:
 except FileNotFoundError:
     pass
 
-import dj_database_url
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(DEBUG=(bool, False))
+
+# =========================
+# CLOUDINARY (DJANGO 5+ STORAGE)
+# =========================
+
+CLOUDINARY_URL = env("CLOUDINARY_URL", default="")
+
+if CLOUDINARY_URL.startswith("cloudinary://"):
+    # Explicitly configure Cloudinary SDK
+    cloudinary.config(cloudinary_url=CLOUDINARY_URL)
+    
+    STORAGES = {
+        "default": {
+            "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+else:
+    # Fallback to local file storage for development
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -47,20 +78,21 @@ DEBUG = env("DEBUG")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
+# SECRET_KEY ='ubmo@!vn19lh6*ss25f#jy6o2_$)3vjmj+9!l)=_ugml#)jgfx'
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
 ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split(",")
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'jazzmin',
-    'cloudinary_storage',
-    'cloudinary', # Add this LINE
-    'django.contrib.staticfiles', # Ensure this is below cloudinary_storage
+    'cloudinary_storage',  # MUST be before django.contrib.staticfiles
+    'cloudinary',
+    'django.contrib.staticfiles',
     'core',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,6 +103,7 @@ INSTALLED_APPS = [
     'products',
     'django.contrib.sitemaps',
 ]
+
 
 
 MIDDLEWARE = [
@@ -228,27 +261,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-#     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-#     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
-# }
-  
-
-# if DEBUG is False:
-#     STATICFILES_DIRS = [ BASE_DIR / 'static' ]
-#     STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-    
-# else:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, 'static'),
-#     ]
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 
