@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     'contact',
     'products',
     'django.contrib.sitemaps',
+    'sendgrid_backend',
 ]
 
 
@@ -220,33 +221,10 @@ EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 # Render Environment Variables se API key fetch karein:
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
 
-# Baaki settings
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL') # Aapka verified domain email
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
-
-# # Environment variables se values lein
-# EMAIL_HOST = os.environ.get('EMAIL_HOST')
-# EMAIL_PORT = os.environ.get('EMAIL_PORT')
-# EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# # Email safer conf
-# EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
-# EMAIL_HOST = env("EMAIL_HOST", default="")
-# EMAIL_PORT = env.int("EMAIL_PORT", default=587)
-# EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
-# EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
-# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
-# DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
-
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
-
+# 
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
