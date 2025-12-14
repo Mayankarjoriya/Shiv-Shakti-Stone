@@ -82,7 +82,7 @@ DEBUG = env("DEBUG")
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
-ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split(",")
+# ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split(",")
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
