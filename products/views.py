@@ -73,7 +73,7 @@ def product_detail(request, slug):
             quote.save()
 
             # Send email notification
-            admin_email = 'mayankrajoriya2004@gmail.com'
+            admin_email = settings.SERVER_EMAIL
             subject = f"Quote Request for {product.name}"
             
             # m = /home/mayank-rajoriya/StoneCraft/handicraft/products/templates/email/qoute_request_email.html

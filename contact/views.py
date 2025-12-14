@@ -42,7 +42,7 @@ def contact(request):
         # send email to admin
         admin_email = settings.SERVER_EMAIL
 
-        subject = f"New contact meesage from- {name}"
+        subject = f"New contact message from - {name}"
 
 
         email_msg = EmailMultiAlternatives(subject,
