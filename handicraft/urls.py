@@ -16,9 +16,6 @@ from io import BytesIO
 
 
 
-sitemaps_dict = {
-    'static': StaticViewSitemap,
-}
 
 def healthcheck(request):
     return HttpResponse("OK")
@@ -46,15 +43,12 @@ urlpatterns = [
 ]
 
 # MEDIA files (admin se upload wali images)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-urlpatterns += [
-    path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
-]
+# urlpatterns += [
+#     path("media/<path:path>", serve, {"document_root": settings.MEDIA_ROOT}),
+# ]
 
-urlpatterns += [
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps_dict}, name="django.contrib.sitemaps.views.sitemap"),
-]
 # STATIC files agar chaho (usually whitenoise handle kar raha hoga)
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
