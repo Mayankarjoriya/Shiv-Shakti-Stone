@@ -81,9 +81,13 @@ DEBUG = env("DEBUG")
 # SECRET_KEY ='ubmo@!vn19lh6*ss25f#jy6o2_$)3vjmj+9!l)=_ugml#)jgfx'
 
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] + env('ALLOWED_HOSTS', default="").split()
-ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split(",")
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# Parse ALLOWED_HOSTS from environment variable
+allowed_hosts_str = env("ALLOWED_HOSTS", default="")
+if allowed_hosts_str:
+    ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(",") if host.strip()]
+else:
+    # Allow all hosts if not specified (for deployment platforms like Render)
+    ALLOWED_HOSTS = ['*']
 
 
 
