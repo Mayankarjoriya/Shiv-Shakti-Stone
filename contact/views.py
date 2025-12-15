@@ -41,7 +41,7 @@ def contact(request):
         text_content = f"New contact message from - {name}"
 
         # send email to admin
-        admin_email = settings.DEFAULT_FROM_EMAIL
+        admin_email = settings.ADMIN_EMAIL
 
         subject = f"New contact message from - {name}"
 
