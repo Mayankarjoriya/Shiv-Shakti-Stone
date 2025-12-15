@@ -1,27 +1,36 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Products | Shiv Shakti Stone</title>
-    
+
     <!-- Google Fonts (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         /* --- USER CSS --- */
         :root {
-            --primary: #c0392b; /* Pomegranate Red */
-            --primary-dark: #a93226; /* Darker Red */
-            --secondary: #27ae60; /* Nephritis Green */
-            --dark: #1e293b; /* Keep dark blue-grey for text */
+            --primary: #c0392b;
+            /* Pomegranate Red */
+            --primary-dark: #a93226;
+            /* Darker Red */
+            --secondary: #27ae60;
+            /* Nephritis Green */
+            --dark: #1e293b;
+            /* Keep dark blue-grey for text */
             --light: #f8fafc;
             --gray: #616161;
             --card-bg: rgba(255, 255, 255, 0.85);
@@ -47,7 +56,8 @@
         }
 
         main {
-            padding-top: 130px; /* Adjust this value based on your actual header height */
+            padding-top: 130px;
+            /* Adjust this value based on your actual header height */
         }
 
         .container {
@@ -115,8 +125,10 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            margin-bottom: 0; /* Bootstrap override */
-            padding-left: 0; /* Bootstrap override */
+            margin-bottom: 0;
+            /* Bootstrap override */
+            padding-left: 0;
+            /* Bootstrap override */
         }
 
         .nav-item {
@@ -174,9 +186,10 @@
             left: 0;
             width: 100%;
             background: white;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            display: none; /* Hidden on desktop */
+            display: none;
+            /* Hidden on desktop */
             justify-content: space-around;
             padding: 10px 0;
             border-top-left-radius: 16px;
@@ -205,7 +218,8 @@
         /* Buttons - General */
         .btn {
             display: inline-block;
-            padding: 6px 16px; /* Restored to reasonable padding */
+            padding: 6px 16px;
+            /* Restored to reasonable padding */
             border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
@@ -216,7 +230,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            height: auto; /* Ensure height is automatic */
+            height: auto;
+            /* Ensure height is automatic */
         }
 
         .btn-primary {
@@ -382,7 +397,8 @@
             border-top: 1px solid #f0f0f0;
             padding: 15px 20px;
             display: flex;
-            flex-direction: column; /* Stack vertically */
+            flex-direction: column;
+            /* Stack vertically */
             justify-content: center;
             align-items: center;
             gap: 10px;
@@ -399,7 +415,8 @@
         /* Full width button in footer */
         .card-footer .btn {
             width: 100%;
-            display: block; /* Ensure it behaves as a block in the footer */
+            display: block;
+            /* Ensure it behaves as a block in the footer */
         }
 
         /* Filter Styles */
@@ -464,35 +481,55 @@
 
         /* Responsive Design */
         @media (max-width: 992px) {
-            .navbar { padding: 15px 20px; }
-            header { padding: 0; }
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            header {
+                padding: 0;
+            }
 
             .mobile-bottom-dock {
                 display: flex;
             }
-            
+
             /* Hide Standard Footer Links on Mobile to save space */
             .footer {
-                margin-bottom: 60px; /* Space for dock */
+                margin-bottom: 60px;
+                /* Space for dock */
             }
-            main { padding-top: 95px; }
+
+            main {
+                padding-top: 95px;
+            }
 
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
-            .social-icons { justify-content: center; }
-        } 
-{% comment %} 
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+            {
+            % comment %
+        }
+
         @media (max-width: 991.98px) {
             /* Show Mobile Dock */
-            
+
 
             /* Adjust container */
             main {
-                padding-top: 20px; 
+                padding-top: 20px;
             }
-        } {% endcomment %}
+        }
+
+            {
+            % endcomment %
+        }
 
         @media (max-width: 768px) {
             .mobile-menu-btn {
@@ -501,7 +538,8 @@
 
             .nav-menu {
                 position: fixed;
-                top: 70px; /* Adjusted based on header height */
+                top: 70px;
+                /* Adjusted based on header height */
                 left: -100%;
                 flex-direction: column;
                 background: white;
@@ -530,11 +568,19 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -580,94 +626,94 @@
                 </div>
 
                 <!-- Filter Sidebar -->
-<!--                <div class="col-lg-3" id="filter-sidebar">-->
-<!--                    <div class="card">-->
-<!--                        <div class="card-header">-->
-<!--                            <h4><i class="fas fa-sliders-h me-2"></i>Filter Products</h4>-->
-<!--                        </div>-->
-<!--                        <div class="card-body">-->
-<!--                            <form method="get" action="{% url 'product_list' %}">-->
-<!--                                &lt;!&ndash; Category Filter &ndash;&gt;-->
-<!--                                <h5>Category</h5>-->
-<!--                                {% for category in categories %}-->
-<!--                                <div class="form-check">-->
-<!--                                    <input class="form-check-input" type="checkbox" name="category" value="{{ category.slug }}" id="cat-{{ category.id }}" {% if category.slug in selected_categories %}checked{% endif %}>-->
-<!--                                    <label class="form-check-label" for="cat-{{ category.id }}">-->
-<!--                                        {{ category.name }}-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                                {% endfor %}-->
-<!--                                -->
-<!--                                <hr>-->
+                <!--                <div class="col-lg-3" id="filter-sidebar">-->
+                <!--                    <div class="card">-->
+                <!--                        <div class="card-header">-->
+                <!--                            <h4><i class="fas fa-sliders-h me-2"></i>Filter Products</h4>-->
+                <!--                        </div>-->
+                <!--                        <div class="card-body">-->
+                <!--                            <form method="get" action="{% url 'product_list' %}">-->
+                <!--                                &lt;!&ndash; Category Filter &ndash;&gt;-->
+                <!--                                <h5>Category</h5>-->
+                <!--                                {% for category in categories %}-->
+                <!--                                <div class="form-check">-->
+                <!--                                    <input class="form-check-input" type="checkbox" name="category" value="{{ category.slug }}" id="cat-{{ category.id }}" {% if category.slug in selected_categories %}checked{% endif %}>-->
+                <!--                                    <label class="form-check-label" for="cat-{{ category.id }}">-->
+                <!--                                        {{ category.name }}-->
+                <!--                                    </label>-->
+                <!--                                </div>-->
+                <!--                                {% endfor %}-->
+                <!--                                -->
+                <!--                                <hr>-->
 
 
-<!--                                &lt;!&ndash; Price Filter &ndash;&gt;-->
-<!--                               <h5>Price Range</h5>-->
-<!--<div class="d-flex align-items-center">-->
-<!--    <input type="range" class="form-range"-->
-<!--           name="price_max"-->
-<!--           {% comment %} min="0"-->
-<!--           max="{{ max_range }}" {% endcomment %}-->
-<!--           step="100"-->
-<!--           value="{{ price_max }}"-->
-<!--           id="price-range">-->
-<!--    <span id="price-value" class="ms-3">₹{{ price_max }}</span>-->
-<!--</div>-->
-<!--  Price Range Filter-->
+                <!--                                &lt;!&ndash; Price Filter &ndash;&gt;-->
+                <!--                               <h5>Price Range</h5>-->
+                <!--<div class="d-flex align-items-center">-->
+                <!--    <input type="range" class="form-range"-->
+                <!--           name="price_max"-->
+                <!--           {% comment %} min="0"-->
+                <!--           max="{{ max_range }}" {% endcomment %}-->
+                <!--           step="100"-->
+                <!--           value="{{ price_max }}"-->
+                <!--           id="price-range">-->
+                <!--    <span id="price-value" class="ms-3">₹{{ price_max }}</span>-->
+                <!--</div>-->
+                <!--  Price Range Filter-->
 
-<!--                                <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters</button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--        -->
+                <!--                                <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters</button>-->
+                <!--                            </form>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--        -->
 
-<!--                new Filter-->
-<div class="card-body">
-    <form method="get" action="{% url 'product_list' %}">
+                <!--                new Filter-->
+                <div class="card-body">
+                    <form method="get" action="{% url 'product_list' %}">
 
-        <div class="mb-3">
-            <h5>Search</h5>
-            <div class="input-group" id='dock-search'>
-                <input type="text" name="search" class="form-control" placeholder="Product name..." value="{{ search_query|default:'' }}">
-                <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </div>
-        <hr>
-<div class="col-lg-3" id="filter-sidebar">
-        <h5>Category</h5>
-        {% for category in categories %}
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="category" value="{{ category.slug }}" id="cat-{{ category.id }}"
-            {% if category.slug in selected_categories %}checked{% endif %}>
-            <label class="form-check-label" for="cat-{{ category.id }}">
-                {{ category.name }}
-            </label>
-        </div>
-        {% endfor %}
+                        <div class="mb-3">
+                            <h5>Search</h5>
+                            <div class="input-group" id='dock-search'>
+                                <input type="text" name="search" class="form-control" placeholder="Product name..."
+                                    value="{{ search_query|default:'' }}">
+                                <button class="btn btn-outline-secondary" type="button"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="col-lg-3" id="filter-sidebar">
+                            <h5>Category</h5>
+                            {% for category in categories %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="category"
+                                    value="{{ category.slug }}" id="cat-{{ category.id }}" {% if category.slug in
+                                    selected_categories %}checked{% endif %}>
+                                <label class="form-check-label" for="cat-{{ category.id }}">
+                                    {{ category.name }}
+                                </label>
+                            </div>
+                            {% endfor %}
 
-        <hr>
+                            <hr>
 
-        <h5>Price Range</h5>
-        <div class="d-flex align-items-center flex-column">
-            <div class="d-flex justify-content-between w-100 mb-2">
-                <span>0</span>
-                <span id="price-value" class="fw-bold text-primary">₹{{ selected_max|default:global_max_price }}</span>
-            </div>
-            <input type="range" class="form-range"
-                   name="price_max"
-                   min="0"
-                   max="{{ global_max_price }}"
-                   step="100"
-                   value="{{ selected_max|default:global_max_price }}"
-                   id="price-range">
-        </div>
+                            <h5>Price Range</h5>
+                            <div class="d-flex align-items-center flex-column">
+                                <div class="d-flex justify-content-between w-100 mb-2">
+                                    <span>0</span>
+                                    <span id="price-value" class="fw-bold text-primary">₹{{
+                                        selected_max|default:global_max_price }}</span>
+                                </div>
+                                <input type="range" class="form-range" name="price_max" min="0"
+                                    max="{{ global_max_price }}" step="100"
+                                    value="{{ selected_max|default:global_max_price }}" id="price-range">
+                            </div>
 
-        <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters & Search</button>
+                            <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters & Search</button>
 
-        <a href="{% url 'product_list' %}" class="btn btn-outline-danger mt-2 w-100">Clear All</a>
-    </form>
-</div>
+                            <a href="{% url 'product_list' %}" class="btn btn-outline-danger mt-2 w-100">Clear All</a>
+                    </form>
+                </div>
                 <!-- Product Grid -->
                 <div class="col-lg-9" id="product-grid">
                     <div class="row">
@@ -675,11 +721,13 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
                             <div class="card h-100 product-card">
                                 <!-- ADDED CLASS: product-img-link -->
-                                <a href="{% url 'product_detail' product.slug %}" class="text-decoration-none product-img-link">
+                                <a href="{% url 'product_detail' product.slug %}"
+                                    class="text-decoration-none product-img-link">
                                     {% if product.image %}
-                                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                                     {% else %}
-                                        <img src="{% static 'images/default_product.png' %}" class="card-img-top" alt="Default Image">
+                                    <img src="{% static 'images/default_product.png' %}" class="card-img-top"
+                                        alt="Default Image">
                                     {% endif %}
                                 </a>
                                 <div class="card-body">
@@ -689,7 +737,8 @@
                                 </div>
                                 <div class="card-footer">
                                     <p class="product-price-footer">₹{{ product.price }}</p>
-                                    <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary">View Details</a>
+                                    <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary">View
+                                        Details</a>
                                 </div>
                             </div>
                         </div>
@@ -715,7 +764,8 @@
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 123 Stonecraft Avenue, Granite City, ST 54321</p>
                     <p><i class="fas fa-phone"></i> <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@shivshaktistone.com">info@shivshaktistone.com</a></p>
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:info@shivshaktistone.com">info@shivshaktistone.com</a></p>
                 </div>
 
                 <div class="footer-section quick-links">
@@ -743,7 +793,7 @@
         </div>
     </footer>
 
-    {% comment %} 
+    {% comment %}
     <!-- Mobile Bottom Dock -->
     {% endcomment %}
     <nav class="mobile-bottom-dock">
@@ -755,7 +805,7 @@
             <i class="fas fa-cubes"></i>
             Products
         </a>
-        
+
         <a href="{% url 'contact' %}" class="dock-item">
             <i class="fas fa-envelope"></i>
             Contact
@@ -763,7 +813,9 @@
     </nav>
 
     <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
     <script>
         // Update price value display for the range slider
@@ -859,11 +911,11 @@
 
                 // Toggle display/flex logic if needed (fallback)
                 if (navMenu.classList.contains('active')) {
-                   // navMenu.style.display = 'flex';
-                   navMenu.style.left = '0';
+                    // navMenu.style.display = 'flex';
+                    navMenu.style.left = '0';
                 } else {
-                   // navMenu.style.display = 'none';
-                   navMenu.style.left = '-100%';
+                    // navMenu.style.display = 'none';
+                    navMenu.style.left = '-100%';
                 }
             });
         }
@@ -879,4 +931,5 @@
         });
     </script>
 </body>
+
 </html>
