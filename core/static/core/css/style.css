@@ -677,6 +677,20 @@ nav ul li a:hover::after {
 /* Responsive Design */
 @media (max-width: 992px) {
 
+    /* Mobile Bottom Dock - Make visible on mobile */
+    .mobile-bottom-dock {
+        display: flex !important;
+    }
+
+    body {
+        padding-bottom: 60px;
+        /* Space for the dock */
+    }
+
+    .footer {
+        margin-bottom: 0;
+    }
+
     /* ... (Hero Responsive is fine) ... */
     .hero-container {
         flex-direction: column;
