@@ -25,7 +25,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     /* BACKGROUND: Keeping linear-gradient, adjust padding in responsive block for mobile dock */
-    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    background: linear-gradient(135deg, #ffecc3, #e0e0e0);
     color: var(--dark);
     min-height: 100vh;
     overflow-x: hidden;
