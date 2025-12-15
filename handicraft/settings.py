@@ -75,11 +75,11 @@ else:
 # SECURITY WARNING: keep the secret key used in production secret!
 
 DEBUG = env("DEBUG")
- SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 
 
-   
+    
 
 # Parse ALLOWED_HOSTS from environment variable
 allowed_hosts_str = env("ALLOWED_HOSTS", default="")
