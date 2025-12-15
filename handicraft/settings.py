@@ -73,13 +73,13 @@ else:
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+
 DEBUG = env("DEBUG")
+ SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-# SECRET_KEY ='ubmo@!vn19lh6*ss25f#jy6o2_$)3vjmj+9!l)=_ugml#)jgfx'
 
+
+   
 
 # Parse ALLOWED_HOSTS from environment variable
 allowed_hosts_str = env("ALLOWED_HOSTS", default="")

@@ -50,8 +50,9 @@ def contact(request):
                                             text_content,
                                               settings.DEFAULT_FROM_EMAIL,
                                                 [admin_email],
-                                                fail_silently=False,)
+                                                )
         email_msg.attach_alternative(html_content, "text/html")
+        email_msg.fail_silently = False
 
         email_msg.send()
        

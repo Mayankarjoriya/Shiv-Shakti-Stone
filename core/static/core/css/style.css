@@ -25,7 +25,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     /* BACKGROUND: Keeping linear-gradient, adjust padding in responsive block for mobile dock */
-    background: linear-gradient(135deg, #ffecc3, #e0e0e0);
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
     color: var(--dark);
     min-height: 100vh;
     overflow-x: hidden;
@@ -80,11 +80,37 @@ header {
     margin-right: 10px;
 }
 
-*/ .nav-menu {
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+}
+
+.nav-menu {
     display: flex;
     list-style: none;
-    /* margin-bottom: 0; removed for cleaner merging */
-    /* padding-left: 0; removed for cleaner merging */
+    margin-bottom: 0;
+    /* Bootstrap override */
+    padding-left: 0;
+    /* Bootstrap override */
 }
 
 .nav-item {
@@ -121,12 +147,17 @@ header {
     width: 100%;
 }
 
-/* COMMENTED: Icon styling is better placed in the mobile-specific media query if only used there */
-/* .nav-link i {
+.nav-link i {
     margin-right: 8px;
     font-size: 0.9rem;
-} */
-/* --- End Conflicting Navbar Block 1 --- */
+}
+
+/* Nav items when styled as buttons */
+.nav-item .btn {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+}
 
 
 /* --- Conflicting Navbar Block 2 (Mostly Duplicated Link Styling) --- */
@@ -264,32 +295,35 @@ nav ul li a:hover::after {
     max-width: 600px;
 }
 
-/* Button Styles: Keeping the first set as they are the most detailed */
+/* Button Styles: Matching product_list.html */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
+    padding: 6px 16px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: var(--transition);
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    height: auto;
 }
 
 .btn-primary {
     background: var(--primary);
     color: white;
     box-shadow: 0 4px 6px rgba(192, 57, 43, 0.3);
+    border: none;
 }
 
 .btn-primary:hover {
     background: var(--primary-dark);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(192, 57, 43, 0.4);
+    color: white;
 }
 
 .btn-secondary {
@@ -710,6 +744,10 @@ nav ul li a:hover::after {
         font-size: 2rem;
     }
 
+    /* COMMENTED: Redundant/Overridden by Bootstrap fixed navbar */
+    /* .navbar { padding: 15px 20px; }
+    header { padding: 15px 0; }
+    main { padding-top: 95px; } */
 
     /* FOOTER RESPONSIVE: Keeping this, but consider Bootstrap utility classes instead */
     .footer-content {
@@ -1271,4 +1309,286 @@ nav ul li a:hover::after {
 .btn-quick-view:hover {
     background: #2b6cb0;
     color: white;
+}
+
+/* END Product Card style */
+
+
+/* Product List Page Specific Styles */
+/* COMMENTED: These filter and product list styles are likely duplicated in product_list.html's <style> block or products/static/products/css/products.css. They should not be in the global core/style.css */
+/* .product-list-page {
+    padding: 40px 0;
+}
+
+.product-list-container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 40px;
+    position: relative;
+}
+
+.filters-sidebar {
+    position: fixed; 
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 300px; 
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    z-index: 101; 
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    overflow-y: auto; 
+}
+
+.filters-sidebar.is-open {
+    transform: translateX(0);
+}
+
+.filter-section {
+    margin-bottom: 30px;
+}
+
+.filter-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+    color: var(--dark);
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--gray);
+    font-size: 1rem;
+}
+
+.filter-group input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+
+.price-slider .filter-title {
+    margin-bottom: 25px;
+}
+
+.price-range-input {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.price-range-input:hover {
+    opacity: 1;
+}
+
+.price-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.price-range-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.price-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.product-grid-area {
+    width: 100%;
+}
+
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.show-filters-btn {
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    display: inline-flex; 
+    align-items: center;
+    gap: 8px;
+}
+
+.show-filters-btn:hover {
+    background: var(--primary-dark);
+}
+
+.sort-options select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.filter-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+@media (min-width: 993px) {
+    .product-list-container.filters-open .product-grid-area {
+        margin-left: 320px; 
+        width: calc(100% - 320px);
+    }
+
+    .filters-sidebar {
+        transform: translateX(0); 
+        box-shadow: none;
+        border-right: 1px solid #e0e0e0;
+    }
+
+    .show-filters-btn {
+        display: none; 
+    }
+
+    .filter-overlay {
+        display: none; 
+    }
+}
+
+@media (max-width: 992px) {
+    .product-list-container {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .grid-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    .product-grid {
+        grid-template-columns: 1fr; 
+    }
+} */
+/* END Product List Page Specific Styles */
+
+/* product: Keeping this empty label as it was at the end */
+/* product */
+
+/* --- MOBILE BOTTOM DOCK (Global) --- */
+.mobile-bottom-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    /* Hidden on desktop by default */
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.dock-item {
+    text-align: center;
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.8rem;
+    flex: 1;
+    transition: color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dock-item i {
+    display: block;
+    font-size: 1.4rem;
+    margin-bottom: 2px;
+}
+
+.dock-item.active {
+    color: var(--primary);
+}
+
+/* Show on mobile */
+@media (max-width: 991.98px) {
+    .mobile-bottom-dock {
+        display: flex;
+    }
+
+    /* Adjust main padding to prevent content being hidden behind dock */
+    main {
+        padding-bottom: 70px;
+    }
+
+    /* Adjust footer margin */
+    .footer {
+        margin-bottom: 60px;
+    }
 }
