@@ -38,15 +38,16 @@ def contact(request):
             'message': message,
             # 'image_url': f"{settings.STATIC_URL}images/logo.png",  # Example image
         })
+        text_content = f"New contact message from - {name}"
 
         # send email to admin
-        admin_email = settings.SERVER_EMAIL
+        admin_email = settings.DEFAULT_FROM_EMAIL
 
         subject = f"New contact message from - {name}"
 
 
         email_msg = EmailMultiAlternatives(subject,
-                                            message,
+                                            text_content,
                                               settings.DEFAULT_FROM_EMAIL,
                                                 [admin_email],
                                                 fail_silently=False,)

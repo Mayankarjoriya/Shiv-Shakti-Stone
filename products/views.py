@@ -82,6 +82,7 @@ def product_detail(request, slug):
                 'quote': quote,
                 'domain': domain,
             })
+            text_content = f"New quote request for {product.name}"
             
 
             # email = EmailMessage(
@@ -93,12 +94,13 @@ def product_detail(request, slug):
 
 
             email = EmailMultiAlternatives(subject,
-                                            html_message,
+                                            text_content,
                                             settings.DEFAULT_FROM_EMAIL,
                                             [admin_email],
                                             )
 
-            email.content_subtype = "html"
+            # email.content_subtype = "html"
+            email.attach_alternative(html_message, "text/html")
             email.send(fail_silently=False)
 
 
