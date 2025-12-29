@@ -1,72 +1,117 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}{{ product.name }} | StoneCraft{% endblock %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% block title %}{{ product.name }} | Premium {{ product.material|default:'Natural Stone' }} Product | Shiv Shakti
+Stone{% endblock %}
+
+{% block meta_description %}
+{{ product.name }} – {{ product.description|truncatewords:25|default:'Handcrafted natural stone product from Shiv Shakti
+Stone, Jaipur. Ideal for '}} {{ product.usage_application|default:'home and commercial spaces' }}. Request a quote
+today.
+{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{{ self.meta_description }}">
+<meta name="keywords" content="
+        {{ product.name|lower }},
+        {% if product.material %}{{ product.material|lower }} product,{% endif %}
+        stone dealer Jaipur,
+        {{ product.material|default:'natural stone' }} supplier India,
+        Shiv Shakti Stone
+    ">
+
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ self.title }}">
+<meta property="og:description" content="{{ self.meta_description }}">
+<meta property="og:type" content="product">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image"
+  content="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
+<meta property="og:site_name" content="Shiv Shakti Stone">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ self.title }}">
+<meta name="twitter:description" content="{{ self.meta_description }}">
+<meta name="twitter:image"
+  content="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
+{% endblock %}
+
 {% block content %}
-<section class="product-detail-section">
-    <div class="container">
-        <div class="product-detail-layout">
-            <!-- Product Gallery -->
-            <div class="product-gallery">
-                <div class="main-image-wrapper">
-                    {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }} main image" id="mainProductImage">
-                    {% else %}
-                        <img src="https://placehold.co/600x450/eee/ccc?text=No+Image" alt="No image available" id="mainProductImage">
-                    {% endif %}
-                </div>
-                <div class="thumbnail-gallery">
-                    {% if product.image %}
-                    <div class="thumbnail-item active">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }} thumbnail" onclick="changeImage('{{ product.image.url }}', this)">
-                    </div>
-                    {% endif %}
-                    {% for img in images %}
-                    <div class="thumbnail-item">
-                        <img src="{{ img.image.url }}" alt="{{ product.name }} thumbnail {{ forloop.counter }}" onclick="changeImage('{{ img.image.url }}', this)">
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+<section class="product-detail-section" aria-labelledby="product-title">
+  <div class="container">
+    <div class="product-detail-layout">
+      <!-- Product Gallery -->
+      <div class="product-gallery" role="region" aria-label="Product image gallery">
+        <div class="main-image-wrapper">
+          {% if product.image %}
+          <img src="{{ product.image.url }}"
+            alt="{{ product.name }} – main view from Shiv Shakti Stone, {{ product.material|default:'natural stone' }} product in {{ product.color|default:'classic design' }}"
+            id="mainProductImage" loading="lazy" width="600" height="450">
+          {% else %}
+          <img src="https://placehold.co/600x450/eee/ccc?text=No+Image" alt="Image not available for {{ product.name }}"
+            id="mainProductImage" loading="lazy" width="600" height="450">
+          {% endif %}
+        </div>
+        <div class="thumbnail-gallery" role="tablist" aria-label="Product image thumbnails">
+          {% if product.image %}
+          <div class="thumbnail-item active" role="presentation">
+            <img src="{{ product.image.url }}" alt="Thumbnail 1 of {{ product.name }}"
+              onclick="changeImage('{{ product.image.url }}', this)" loading="lazy">
+          </div>
+          {% endif %}
+          {% for img in images %}
+          <div class="thumbnail-item" role="presentation">
+            <img src="{{ img.image.url }}" alt="Thumbnail {{ forloop.counter|add:1 }} of {{ product.name }}"
+              onclick="changeImage('{{ img.image.url }}', this)" loading="lazy">
+          </div>
+          {% endfor %}
+        </div>
+      </div>
 
-            <!-- Product Info -->
-            <div class="product-info">
-                <h1 class="product-main-title">{{ product.name }}</h1>
-                <p class="product-main-price">Rs {{ product.price }} / Piece</p>
-                <p class="product-short-desc">{{ product.description|linebreaks }}</p>
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 class="product-main-title" id="product-title">{{ product.name }}</h1>
+        <p class="product-main-price">₹{{ product.price }} per Piece</p>
 
-                <div class="product-specs">
-                    <h3 class="specs-title">Specifications</h3>
-                    <ul>
-                        {% if product.material %}<li><strong>Material:</strong> {{ product.material }}</li>{% endif %}
-                        {% if product.color %}<li><strong>Color:</strong> {{ product.color }}</li>{% endif %}
-                        {% if product.shape %}<li><strong>Shape:</strong> {{ product.shape }}</li>{% endif %}
-                        {% if product.dimensions %}<li><strong>Dimensions:</strong> {{ product.dimensions }}</li>{% endif %}
-                        {% if product.size %}<li><strong>Size:</strong> {{ product.size }}</li>{% endif %}
-                        {% if product.height %}<li><strong>Height:</strong> {{ product.height }}</li>{% endif %}
-                        {% if product.usage_application %}<li><strong>Usage:</strong> {{ product.usage_application }}</li>{% endif %}
-                        {% if product.model_number %}<li><strong>Model No:</strong> {{ product.model_number }}</li>{% endif %}
-                        {% if product.country_of_origin %}<li><strong>Origin:</strong> {{ product.country_of_origin }}</li>{% endif %}
-                        {% if product.brochure %}<li><strong>Brochure:</strong> {{ product.brochure }}</li>{% endif %}
-                        {% if product.production_capicity %}<li><strong>Production Capicity:</strong> {{ product.production_capicity }}</li>{% endif %}
+        {% if product.description %}
+        <div class="product-short-desc">{{ product.description|linebreaks }}</div>
+        {% else %}
+        <p>Handcrafted {{ product.material|default:'stone' }} product from Shiv Shakti Stone, designed for durability
+          and aesthetic appeal.</p>
+        {% endif %}
 
-                        {% for feature in features %}
-                        <li><strong>{{ feature.name }}:</strong> {{ feature.value }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <div class="product-specs" aria-labelledby="specs-heading">
+          <h3 class="specs-title" id="specs-heading">Product Specifications</h3>
+          <ul>
+            {% if product.material %}<li><strong>Material:</strong> {{ product.material }}</li>{% endif %}
+            {% if product.color %}<li><strong>Color:</strong> {{ product.color }}</li>{% endif %}
+            {% if product.shape %}<li><strong>Shape:</strong> {{ product.shape }}</li>{% endif %}
+            {% if product.dimensions %}<li><strong>Dimensions:</strong> {{ product.dimensions }}</li>{% endif %}
+            {% if product.size %}<li><strong>Size:</strong> {{ product.size }}</li>{% endif %}
+            {% if product.height %}<li><strong>Height:</strong> {{ product.height }}</li>{% endif %}
+            {% if product.usage_application %}<li><strong>Ideal For:</strong> {{ product.usage_application }}</li>{%
+            endif %}
+            {% if product.model_number %}<li><strong>Model No:</strong> {{ product.model_number }}</li>{% endif %}
+            <li><strong>Origin:</strong> Made in India, crafted in Sikandara, Jaipur</li>
+            {% if product.production_capicity %}<li><strong>Production Capacity:</strong> {{ product.production_capicity
+              }}</li>{% endif %}
 
-                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quoteModal">
-                    Request Quote
-                </button>
-            </div>
+            {% for feature in features %}
+            <li><strong>{{ feature.name }}:</strong> {{ feature.value }}</li>
+            {% endfor %}
+          </ul>
         </div>
 
-        <!-- You can add related products or more details here -->
-
-        </div>
+        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#quoteModal"
+          aria-label="Request a quote for {{ product.name }}">
+          Request Quote
+        </button>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- Quote Request Modal -->
@@ -74,26 +119,33 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content p-3">
       <div class="modal-header">
-        <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
+        <h2 class="modal-title" id="quoteModalLabel">Request a Quote for {{ product.name }}</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="post" action="#">
+      <form method="post" action="#" novalidate>
         {% csrf_token %}
         <div class="modal-body">
           <div class="mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            <label for="modal-name" class="visually-hidden">Your Name</label>
+            <input type="text" id="modal-name" name="name" class="form-control" placeholder="Your Name" required>
           </div>
           <div class="mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            <label for="modal-email" class="visually-hidden">Your Email</label>
+            <input type="email" id="modal-email" name="email" class="form-control" placeholder="Your Email" required>
           </div>
           <div class="mb-3">
-            <input type="text" name="mobile" class="form-control" placeholder="Your Mobile" required>
+            <label for="modal-mobile" class="visually-hidden">Your Mobile</label>
+            <input type="tel" id="modal-mobile" name="mobile" class="form-control" placeholder="Your Mobile" required>
           </div>
           <div class="mb-3">
-            <input type="text" name="address" class="form-control" placeholder="Your Location" required>
+            <label for="modal-location" class="visually-hidden">Your Location</label>
+            <input type="text" id="modal-location" name="address" class="form-control"
+              placeholder="Your Location (City/State)" required>
           </div>
           <div class="mb-3">
-            <textarea name="message" class="form-control" placeholder="Message (optional)"></textarea>
+            <label for="modal-message" class="visually-hidden">Additional Details</label>
+            <textarea name="message" id="modal-message" class="form-control"
+              placeholder="E.g., quantity needed, installation support, etc."></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -105,17 +157,53 @@
   </div>
 </div>
 
- 
-
-<script>
-function changeImage(imageUrl, thumbnailElement) {
-    // Change the main image source
-    document.getElementById('mainProductImage').src = imageUrl;
-
-    // Update the active state for thumbnails
-    const thumbnails = document.querySelectorAll('.thumbnail-item');
-    thumbnails.forEach(item => item.classList.remove('active'));
-    thumbnailElement.parentElement.classList.add('active');
+<!-- Structured Data: Product Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.name }}",
+  "image": [
+    {% if product.image %}"{{ product.image.url }}"{% endif %}
+    {% for img in images %}{% if forloop.first and product.image %},{% endif %}"{{ img.image.url }}"{% if not forloop.last %},{% endif %}{% endfor %}
+  ],
+  "description": "{{ product.description|striptags|truncatewords:30|escapejs }}",
+  "sku": "{{ product.sku|default:product.id }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Shiv Shakti Stone"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ request.build_absolute_uri }}",
+    "priceCurrency": "INR",
+    "price": "{{ product.price }}",
+    "priceValidUntil": "{{ '2026-12-31'|date:'Y-m-d' }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Shiv Shakti Stone",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jaipur Road, Sikandara",
+        "addressLocality": "Sikandara",
+        "addressRegion": "Rajasthan",
+        "addressCountry": "IN"
+      },
+      "telephone": "+919799416741",
+      "email": "shivshaktistone0@gmail.com"
+    }
+  }
 }
 </script>
+
+<script>
+  function changeImage(imageUrl, thumbnailElement) {
+    document.getElementById('mainProductImage').src = imageUrl;
+    document.querySelectorAll('.thumbnail-item').forEach(item => item.classList.remove('active'));
+    thumbnailElement.closest('.thumbnail-item').classList.add('active');
+  }
+</script>
+
 {% endblock %}

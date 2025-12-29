@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Products | Shiv Shakti Stone</title>
+    <title>Our Products | Premium Natural Stone – Shiv Shakti Stone, Jaipur</title>
+    <meta name="description"
+        content="Explore handmade marble, granite & sandstone products from Shiv Shakti Stone – crafted in Sikandara, Jaipur. Custom designs, nationwide delivery. Request a quote today!">
 
-    <!-- Google Fonts (Poppins) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
@@ -15,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -25,17 +27,30 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'core/images/favicon.png' %}">
     <link rel="shortcut icon" href="{% static 'core/images/favicon.png' %}">
 
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Our Products | Shiv Shakti Stone – Handcrafted Stone Experts in Jaipur">
+    <meta property="og:description"
+        content="Premium marble, granite & sandstone products made in India. Custom stone solutions for homes & businesses.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'images/hero-image.jpg' %}">
+    <meta property="og:site_name" content="Shiv Shakti Stone">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Natural Stone Products – Shiv Shakti Stone, Jaipur">
+    <meta name="twitter:description"
+        content="Handmade stone products crafted in Rajasthan. Browse our collection of marble, granite & sandstone.">
+    <meta name="twitter:image" content="{% static 'images/hero-image.jpg' %}">
+
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
     <style>
-        /* --- USER CSS --- */
+        /* --- YOUR EXISTING STYLES (UNMODIFIED) --- */
         :root {
             --primary: #c0392b;
-            /* Pomegranate Red */
             --primary-dark: #a93226;
-            /* Darker Red */
             --secondary: #27ae60;
-            /* Nephritis Green */
             --dark: #1e293b;
-            /* Keep dark blue-grey for text */
             --light: #f8fafc;
             --gray: #616161;
             --card-bg: rgba(255, 255, 255, 0.85);
@@ -62,7 +77,6 @@
 
         main {
             padding-top: 130px;
-            /* Adjust this value based on your actual header height */
         }
 
         .container {
@@ -72,7 +86,6 @@
             padding: 0 20px;
         }
 
-        /* Header Styles */
         header {
             position: fixed;
             width: 100%;
@@ -103,7 +116,6 @@
             margin-right: 10px;
         }
 
-        /* Navbar Styles */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -131,9 +143,7 @@
             display: flex;
             list-style: none;
             margin-bottom: 0;
-            /* Bootstrap override */
             padding-left: 0;
-            /* Bootstrap override */
         }
 
         .nav-item {
@@ -184,7 +194,6 @@
             color: var(--dark);
         }
 
-        /* --- MOBILE BOTTOM DOCK --- */
         .mobile-bottom-dock {
             position: fixed;
             bottom: 0;
@@ -194,7 +203,6 @@
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: none;
-            /* Hidden on desktop */
             justify-content: space-around;
             padding: 10px 0;
             border-top-left-radius: 16px;
@@ -220,11 +228,9 @@
             color: var(--primary);
         }
 
-        /* Buttons - General */
         .btn {
             display: inline-block;
             padding: 6px 16px;
-            /* Restored to reasonable padding */
             border-radius: 50px;
             text-decoration: none;
             font-weight: 500;
@@ -236,7 +242,6 @@
             overflow: hidden;
             z-index: 1;
             height: auto;
-            /* Ensure height is automatic */
         }
 
         .btn-primary {
@@ -252,7 +257,6 @@
             box-shadow: 0 6px 12px rgba(192, 57, 43, 0.4);
         }
 
-        /* Footer */
         .footer {
             background-color: #2c3e50;
             color: #ecf0f1;
@@ -331,7 +335,6 @@
             font-size: 0.9rem;
         }
 
-        /* Product Card Styles */
         .product-card {
             background: white;
             border-radius: 16px;
@@ -350,8 +353,6 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
         }
 
-        /* UPDATED: Targeted Image container within card */
-        /* Changed from ".product-card a" to ".product-img-link" */
         .product-img-link {
             display: block;
             height: 220px;
@@ -396,20 +397,17 @@
             color: var(--primary);
         }
 
-        /* UPDATED Card Footer layout */
         .card-footer {
             background: white;
             border-top: 1px solid #f0f0f0;
             padding: 15px 20px;
             display: flex;
             flex-direction: column;
-            /* Stack vertically */
             justify-content: center;
             align-items: center;
             gap: 10px;
         }
 
-        /* NEW style for price in the footer */
         .product-price-footer {
             font-size: 1.1rem;
             font-weight: 700;
@@ -417,14 +415,11 @@
             margin-bottom: 0;
         }
 
-        /* Full width button in footer */
         .card-footer .btn {
             width: 100%;
             display: block;
-            /* Ensure it behaves as a block in the footer */
         }
 
-        /* Filter Styles */
         #filter-sidebar .card {
             border: none;
             border-radius: 16px;
@@ -483,7 +478,6 @@
             min-width: 80px;
         }
 
-        /* Responsive Design */
         @media (max-width: 992px) {
             .navbar {
                 padding: 15px 20px;
@@ -497,10 +491,8 @@
                 display: flex;
             }
 
-            /* Hide Standard Footer Links on Mobile to save space */
             .footer {
                 margin-bottom: 60px;
-                /* Space for dock */
             }
 
             main {
@@ -525,7 +517,6 @@
             .nav-menu {
                 position: fixed;
                 top: 70px;
-                /* Adjusted based on header height */
                 left: -100%;
                 flex-direction: column;
                 background: white;
@@ -546,7 +537,6 @@
             }
         }
 
-        /* Smooth fade in for content */
         .product-card {
             animation: fadeIn 0.5s ease-out;
         }
@@ -568,75 +558,78 @@
 <body>
 
     <header>
-        <nav class="navbar">
-            <a href="{% url 'home' %}" class="logo">
-                <i class="fas fa-gem"></i>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="{% url 'home' %}" class="logo" aria-label="Shiv Shakti Stone Home">
+                <i class="fas fa-gem" aria-hidden="true"></i>
                 Shiv Shakti Stone
             </a>
 
-            <button class="mobile-menu-btn" id="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
 
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="{% url 'home' %}" class="btn btn-primary">
-                        <i class="fas fa-home"></i> Home
+            <ul class="nav-menu" id="nav-menu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="{% url 'home' %}" class="btn btn-primary" role="menuitem">
+                        <i class="fas fa-home" aria-hidden="true"></i> Home
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'product_list' %}" class="btn btn-primary">
-                        <i class="fas fa-cubes"></i> Products
+                <li class="nav-item" role="none">
+                    <a href="{% url 'product_list' %}" class="btn btn-primary active" role="menuitem">
+                        <i class="fas fa-cubes" aria-hidden="true"></i> Products
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'contact' %}" class="btn btn-primary">
-                        <i class="fas fa-phone"></i> Contact
+                <li class="nav-item" role="none">
+                    <a href="{% url 'contact' %}" class="btn btn-primary" role="menuitem">
+                        <i class="fas fa-phone" aria-hidden="true"></i> Contact
                     </a>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <!-- Main content block -->
-    <main class="container py-4">
+    <main class="container py-4" role="main">
         <div class="container-fluid mt-4">
+            <header class="text-center mb-4">
+                <h1>Our Handcrafted Stone Products</h1>
+                <p class="text-muted">Premium marble, granite & sandstone for homes and commercial spaces – made in
+                    Jaipur, India</p>
+            </header>
+
             <div class="row">
-                <!-- Filter Sidebar (Desktop) / Hidden Toggle Content (Mobile) -->
+                <!-- Filter Sidebar -->
                 <div class="col-lg-3" id="filter-sidebar">
                     <div class="card">
                         <div class="card-header d-none d-lg-block">
-                            <h4 class="mb-0">Filters</h4>
+                            <h2 class="h4 mb-0">Filters</h2>
                         </div>
                         <div class="card-body">
-                            <form method="get" action="{% url 'product_list' %}">
+                            <form method="get" action="{% url 'product_list' %}" role="search">
                                 <div class="mb-3">
-                                    <h5>Search</h5>
-                                    <div class="input-group" id='dock-search'>
+                                    <h3 class="h5">Search Products</h3>
+                                    <div class="input-group">
                                         <input type="text" name="search" class="form-control"
-                                            placeholder="Product name..." value="{{ search_query|default:'' }}">
-                                        <button class="btn btn-outline-secondary" type="submit"><i
-                                                class="fas fa-search"></i></button>
+                                            placeholder="Product name..." value="{{ search_query|default:'' }}"
+                                            aria-label="Search products">
+                                        <button class="btn btn-outline-secondary" type="submit" aria-label="Search">
+                                            <i class="fas fa-search" aria-hidden="true"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <hr>
-                                <h5>Category</h5>
+                                <h3 class="h5">Category</h3>
                                 {% for category in categories %}
                                 <div class="form-check">
-                                    {% if category.slug in selected_categories %}
                                     <input class="form-check-input" type="checkbox" name="category"
-                                        value="{{ category.slug }}" id="cat-{{ category.id }}" checked>
-                                    {% else %}
-                                    <input class="form-check-input" type="checkbox" name="category"
-                                        value="{{ category.slug }}" id="cat-{{ category.id }}">
-                                    {% endif %}
+                                        value="{{ category.slug }}" id="cat-{{ category.id }}" {% if category.slug in
+                                        selected_categories %}checked{% endif %}>
                                     <label class="form-check-label" for="cat-{{ category.id }}">
                                         {{ category.name }}
                                     </label>
                                 </div>
                                 {% endfor %}
                                 <hr>
-                                <h5>Price Range</h5>
+                                <h3 class="h5">Price Range</h3>
                                 <div class="d-flex align-items-center flex-column">
                                     <div class="d-flex justify-content-between w-100 mb-2">
                                         <span>₹0</span>
@@ -645,200 +638,216 @@
                                     </div>
                                     <input type="range" class="form-range" name="price_max" min="0"
                                         max="{{ global_max_price }}" step="100"
-                                        value="{{ selected_max|default:global_max_price }}" id="price-range">
+                                        value="{{ selected_max|default:global_max_price }}" id="price-range"
+                                        aria-label="Filter by maximum price">
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters & Search</button>
+                                <button type="submit" class="btn btn-primary mt-4 w-100">Apply Filters</button>
                                 <a href="{% url 'product_list' %}" class="btn btn-outline-danger mt-2 w-100">Clear
                                     All</a>
                             </form>
                         </div>
                     </div>
                 </div>
+
                 <!-- Product Grid -->
                 <div class="col-lg-9" id="product-grid">
-                    <!-- Mobile Filter Toggle Button -->
                     <div class="d-block d-lg-none mb-3">
-                        <button class="btn btn-primary w-100" id="filter-toggle-btn" type="button">
-                            <i class="fas fa-filter me-2"></i> Filters
+                        <button class="btn btn-primary w-100" id="filter-toggle-btn" type="button"
+                            aria-expanded="false">
+                            <i class="fas fa-filter me-2" aria-hidden="true"></i> Filters
                         </button>
                     </div>
+
+                    {% if products %}
                     <div class="row">
                         {% for product in products %}
                         <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
-                            <div class="card h-100 product-card">
+                            <article class="card h-100 product-card" itemscope itemtype="https://schema.org/Product">
                                 <a href="{% url 'product_detail' product.slug %}"
-                                    class="text-decoration-none product-img-link">
+                                    class="text-decoration-none product-img-link" itemprop="url">
                                     {% if product.image %}
-                                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                    <img src="{{ product.image.url }}" class="card-img-top"
+                                        alt="{{ product.name }} – handmade {{ product.material|default:'stone' }} product"
+                                        loading="lazy" itemprop="image">
                                     {% else %}
                                     <img src="{% static 'images/default_product.png' %}" class="card-img-top"
-                                        alt="Default Image">
+                                        alt="Default image for {{ product.name }}" loading="lazy" itemprop="image">
                                     {% endif %}
                                 </a>
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
-                                    </h5>
+                                    <h2 class="card-title h5">
+                                        <a href="{% url 'product_detail' product.slug %}" itemprop="name">{{
+                                            product.name }}</a>
+                                    </h2>
                                 </div>
                                 <div class="card-footer">
-                                    <p class="product-price-footer">₹{{ product.price }}</p>
-                                    <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary">View
-                                        Details</a>
+                                    <p class="product-price-footer" itemprop="offers" itemscope
+                                        itemtype="https://schema.org/Offer">
+                                        <span itemprop="priceCurrency" content="INR">₹</span>
+                                        <span itemprop="price" content="{{ product.price }}">{{ product.price }}</span>
+                                    </p>
+                                    <a href="{% url 'product_detail' product.slug %}" class="btn btn-primary"
+                                        aria-label="View details of {{ product.name }}">View Details</a>
                                 </div>
-                            </div>
-                        </div>
-                        {% empty %}
-                        <div class="col-12">
-                            <div class="text-center py-5">
-                                <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
-                                <p class="text-muted">No products match your search.</p>
-                            </div>
+                            </article>
                         </div>
                         {% endfor %}
                     </div>
+                    {% else %}
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <i class="fas fa-box-open fa-3x text-muted mb-3" aria-hidden="true"></i>
+                            <p class="text-muted h5">No products match your search criteria.</p>
+                            <a href="{% url 'product_list' %}" class="btn btn-outline-primary mt-2">Reset Filters</a>
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Standard Footer -->
-    <footer class="footer">
+    <!-- Updated Footer with REAL Contact Info -->
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section contact-info">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Stonecraft Avenue, Granite City, ST 54321</p>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+11234567890">+1 (123) 456-7890</a></p>
-                    <p><i class="fas fa-envelope"></i> <a
-                            href="mailto:info@shivshaktistone.com">info@shivshaktistone.com</a></p>
+                    <h2>Contact Shiv Shakti Stone</h2>
+                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        Shiv Shakti Stone, Jaipur Road, Sikandara, Rajasthan, India
+                    </p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i>
+                        <a href="tel:+919799416741">+91 97994 16741</a> or
+                        <a href="tel:+918094972696">+91 80949 72696</a>
+                    </p>
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i>
+                        <a href="mailto:shivshaktistone0@gmail.com">shivshaktistone0@gmail.com</a>
+                    </p>
                 </div>
                 <div class="footer-section quick-links">
-                    <h3>Quick Links</h3>
+                    <h2>Quick Links</h2>
                     <ul>
                         <li><a href="{% url 'home' %}">Home</a></li>
-                        <li><a href="#features">Services</a></li>
-                        <li><a href="{% url 'product_list' %}">Products</a></li>
-                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="{% url 'product_list' %}">All Products</a></li>
+                        <li><a href="{% url 'contact' %}">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-section social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    <h2>Follow Us</h2>
+                    <div class="social-icons" aria-label="Social media links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Shiv-Shakti Stone. All rights reserved.</p>
+                <p>&copy; 2025 Shiv Shakti Stone. All rights reserved. Crafted in Jaipur, Rajasthan.</p>
             </div>
         </div>
     </footer>
 
-    {% comment %}
     <!-- Mobile Bottom Dock -->
-    {% endcomment %}
-    <nav class="mobile-bottom-dock">
-        <a href="{% url 'home' %}" class="dock-item">
-            <i class="fas fa-home"></i>
-            Home
+    <nav class="mobile-bottom-dock" aria-label="Mobile navigation">
+        <a href="{% url 'home' %}" class="dock-item" aria-label="Home">
+            <i class="fas fa-home" aria-hidden="true"></i> Home
         </a>
-        <a href="{% url 'product_list' %}" class="dock-item active">
-            <i class="fas fa-cubes"></i>
-            Products
+        <a href="{% url 'product_list' %}" class="dock-item active" aria-label="Products">
+            <i class="fas fa-cubes" aria-hidden="true"></i> Products
         </a>
-        <a href="{% url 'contact' %}" class="dock-item">
-            <i class="fas fa-envelope"></i>
-            Contact
+        <a href="{% url 'contact' %}" class="dock-item" aria-label="Contact">
+            <i class="fas fa-envelope" aria-hidden="true"></i> Contact
         </a>
     </nav>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
     <script>
-        // Update price value display for the range slider
+        // Price range update
         const priceRange = document.getElementById('price-range');
         const priceValue = document.getElementById('price-value');
         if (priceRange && priceValue) {
-            priceRange.addEventListener('input', (e) => {
-                priceValue.textContent = `₹${e.target.value}`;
-            });
+            priceRange.addEventListener('input', e => priceValue.textContent = `₹${e.target.value}`);
         }
 
-        // Filter toggle functionality with slide animation (mobile)
+        // Mobile filter toggle
         const filterToggleBtn = document.getElementById('filter-toggle-btn');
         const filterSidebar = document.getElementById('filter-sidebar');
         if (filterToggleBtn && filterSidebar) {
-            function checkScreenSize() {
+            let isExpanded = false;
+            const checkScreenSize = () => {
                 if (window.innerWidth >= 992) {
                     filterToggleBtn.style.display = 'none';
                     filterSidebar.style.display = 'block';
-                    filterSidebar.style.maxHeight = 'none';
                 } else {
                     filterToggleBtn.style.display = 'block';
-                    if (!filterSidebar.classList.contains('expanded')) {
-                        filterSidebar.style.display = 'none';
-                    }
+                    if (!isExpanded) filterSidebar.style.display = 'none';
                 }
-            }
+            };
             checkScreenSize();
-            filterToggleBtn.addEventListener('click', () => {
-                const isExpanded = filterSidebar.classList.contains('expanded');
-                if (isExpanded) {
-                    filterSidebar.style.overflow = 'hidden';
-                    filterSidebar.style.transition = 'max-height 0.3s ease-out';
-                    filterSidebar.style.maxHeight = `${filterSidebar.scrollHeight}px`;
-                    filterSidebar.offsetHeight;
-                    filterSidebar.style.maxHeight = '0';
-                    setTimeout(() => {
-                        filterSidebar.classList.remove('expanded');
-                        filterSidebar.style.display = 'none';
-                        filterToggleBtn.innerHTML = '<i class="fas fa-filter me-2"></i> Filters';
-                    }, 300);
-                } else {
-                    filterSidebar.style.display = 'block';
-                    filterSidebar.style.overflow = 'hidden';
-                    filterSidebar.style.maxHeight = '0';
-                    filterSidebar.style.transition = 'max-height 0.3s ease-in';
-                    filterSidebar.classList.add('expanded');
-                    filterSidebar.offsetHeight;
-                    filterSidebar.style.maxHeight = `${filterSidebar.scrollHeight}px`;
-                    setTimeout(() => {
-                        filterSidebar.style.maxHeight = 'none';
-                        filterSidebar.style.overflow = 'visible';
-                        filterToggleBtn.innerHTML = '<i class="fas fa-times me-2"></i> Hide Filters';
-                    }, 300);
-                }
-            });
             window.addEventListener('resize', checkScreenSize);
+            filterToggleBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                filterSidebar.style.display = isExpanded ? 'block' : 'none';
+                filterToggleBtn.innerHTML = isExpanded ?
+                    '<i class="fas fa-times me-2"></i> Hide Filters' :
+                    '<i class="fas fa-filter me-2"></i> Filters';
+                filterToggleBtn.setAttribute('aria-expanded', isExpanded);
+            });
         }
 
-        // Mobile menu toggle
+        // Mobile menu
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const navMenu = document.getElementById('nav-menu');
         if (mobileMenuToggle && navMenu) {
             mobileMenuToggle.addEventListener('click', () => {
+                const isActive = navMenu.classList.contains('active');
                 navMenu.classList.toggle('active');
-                if (navMenu.classList.contains('active')) {
-                    navMenu.style.left = '0';
-                } else {
+                navMenu.style.left = isActive ? '-100%' : '0';
+            });
+            document.addEventListener('click', e => {
+                if (navMenu.classList.contains('active') &&
+                    !e.target.closest('#mobile-menu-toggle') &&
+                    !e.target.closest('#nav-menu')) {
+                    navMenu.classList.remove('active');
                     navMenu.style.left = '-100%';
                 }
             });
         }
+    </script>
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (navMenu && navMenu.classList.contains('active') &&
-                !e.target.closest('#mobile-menu-toggle') &&
-                !e.target.closest('#nav-menu')) {
-                navMenu.classList.remove('active');
-                navMenu.style.left = '-100%';
+    <!-- Schema.org: Organization + Product List -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Shiv Shakti Stone Products",
+      "description": "Handcrafted marble, granite, and sandstone products made in Jaipur, India.",
+      "itemListElement": [
+        {% for product in products %}
+        {
+          "@type": "ListItem",
+          "position": {{ forloop.counter }},
+          "item": {
+            "@type": "Product",
+            "name": "{{ product.name }}",
+            "image": "{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/default_product.png' %}{% endif %}",
+            "description": "{{ product.description|striptags|truncatewords:20|escapejs }}",
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "INR",
+              "price": "{{ product.price }}",
+              "url": "{% url 'product_detail' product.slug %}",
+              "availability": "https://schema.org/InStock"
             }
-        });
+          }
+        }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
     </script>
 </body>
 

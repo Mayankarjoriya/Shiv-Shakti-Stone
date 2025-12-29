@@ -1,63 +1,175 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Contact Us | Shiv Shakti Stone{% endblock %}
+{% block title %}Contact Us | Shiv Shakti Stone – Natural Stone Craftsmen in Sikandara, Jaipur{% endblock %}
+
+{% block meta_description %}
+Visit or contact Shiv Shakti Stone in Sikandara, Jaipur. Call +91 97994 16741 or email shivshaktistone0@gmail.com for
+custom marble, granite & sandstone solutions across India.
+{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{{ self.meta_description }}">
+<meta name="keywords"
+    content="stone supplier Jaipur, marble craftsman Sikandara, granite dealer Rajasthan, sandstone exporter India, Shiv Shakti Stone contact">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ self.title }}">
+<meta property="og:description" content="{{ self.meta_description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image" content="{% static 'images/hero-image.jpg' %}">
+<meta property="og:site_name" content="Shiv Shakti Stone">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ self.title }}">
+<meta name="twitter:description" content="{{ self.meta_description }}">
+{% endblock %}
 
 {% block content %}
-<section class="contact-page-section">
+<section class="contact-page-section" aria-labelledby="contact-page-heading">
     <div class="contact-container">
         <div class="contact-image">
             <div class="image-content fade-in">
-                <h3>Let's Connect</h3>
-                <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <h2 id="contact-page-heading">Contact Shiv Shakti Stone</h2>
+                <p>We’re based in **Sikandara, Jaipur**, and serve clients across India with premium handmade stone
+                    products—marble, granite, sandstone, and more.</p>
+
+                <!-- Visible Contact Info (Great for Local SEO) -->
+                <div class="contact-details">
+                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <strong>Address:</strong> Shiv Shakti Stone, Jaipur Road, Sikandara, Rajasthan, India
+                    </p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i>
+                        <strong>Call Us:</strong>
+                        <a href="tel:+919799416741" class="contact-link">+91 97994 16741</a> or
+                        <a href="tel:+918094972696" class="contact-link">+91 80949 72696</a>
+                    </p>
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i>
+                        <strong>Email:</strong>
+                        <a href="mailto:shivshaktistone0@gmail.com" class="contact-link">shivshaktistone0@gmail.com</a>
+                    </p>
+                </div>
+
+                <p>We respond to all inquiries within 24 hours. Prefer a site visit? Let us know in your message!</p>
             </div>
         </div>
-        
+
         <div class="contact-form fade-in">
-            <h3 class="form-title">Contact Us</h3>
-            <p class="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
-            
-            <form id="contactForm" method="POST">
+            <h3 class="form-title">Send a Message</h3>
+            <p class="form-subtitle">Have a project in mind? Tell us your requirements.</p>
+
+            <form id="contactForm" method="POST" novalidate>
                 {% csrf_token %}
-                
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <div class="input-with-icon">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Your name"
+                                required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-with-icon">
-                            <i class="fas fa-envelope"></i>
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="you@example.com" required>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="mobile">Mobile Number</label>
                     <div class="input-with-icon">
-                        <i class="fas fa-phone"></i>
-                        <input type="text" id="mobile" name="mobile" class="form-control" placeholder="Enter your phone number" required>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="+91 98765 43210"
+                            required>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="message">Your Message</label>
-                    <textarea id="message" name="message" class="form-control" placeholder="Type your message here..." rows="5" required></textarea>
+                    <textarea id="message" name="message" class="form-control"
+                        placeholder="Describe your project, stone type, size, or location..." rows="5"
+                        required></textarea>
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Send Message</button>
-                
+
+                <button type="submit" class="btn btn-primary" aria-label="Send your inquiry to Shiv Shakti Stone">Send
+                    Message</button>
+
                 <div class="form-footer">
-                    <p>We respect your privacy. Your information will not be shared with third parties.</p>
+                    <p>We respect your privacy. Your details are secure and will not be shared.</p>
                 </div>
             </form>
         </div>
     </div>
 </section>
+
+<!-- Schema.org – Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Shiv Shakti Stone",
+  "image": "{% static 'images/hero-image.jpg' %}",
+  "url": "{{ request.build_absolute_uri }}",
+  "telephone": "+919799416741",
+  "additionalTelephones": [
+    {
+      "telephone": "+918094972696",
+      "contactType": "Secondary"
+    }
+  ],
+  "email": "shivshaktistone0@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Jaipur Road, Sikandara",
+    "addressLocality": "Sikandara",
+    "addressRegion": "Rajasthan",
+    "postalCode": "",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 26.9124,
+    "longitude": 75.7873
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "description": "Handmade marble, granite, and sandstone products crafted in Jaipur, Rajasthan. Custom stone solutions for homes and commercial spaces across India."
+}
+</script>
+
+<style>
+    .contact-link {
+        color: #2c3e50;
+        text-decoration: underline;
+    }
+
+    .contact-link:hover {
+        color: #e67e22;
+    }
+
+    .contact-details p {
+        margin: 8px 0;
+        line-height: 1.5;
+    }
+</style>
 {% endblock %}

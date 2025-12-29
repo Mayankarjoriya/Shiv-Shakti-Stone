@@ -1,150 +1,174 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Shiv Shakti Stone | Home{% endblock %}
+{% block title %}Shiv Shakti Stone | Premium Handcrafted Natural Stone Products in India{% endblock %}
 
-{% block content %}
+{% block meta_description %}
+Discover premium handmade stone products from Shiv Shakti Stone—marble, granite, sandstone & more for homes and
+commercial spaces. Custom designs, expert consultation, pan-India delivery.
+{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="{% block meta_description %}{% endblock %}">
+<meta name="keywords"
+    content="handmade stone products, natural stone India, marble countertops, custom stone carving, granite suppliers, sandstone decor, Shiv Shakti Stone">
+<link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+<!-- Open Graph / Social Meta -->
+<meta property="og:title" content="{{ self.title }}">
+<meta property="og:description" content="{{ self.meta_description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:image"
+    content="{% if hero and hero.image %}{{ hero.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
+<meta property="og:site_name" content="Shiv Shakti Stone">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ self.title }}">
+<meda name="twitter:description" content="{{ self.meta_description }}">
+    <meta name="twitter:image"
+        content="{% if hero and hero.image %}{{ hero.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
+    {% endblock %}
+
+    {% block content %}
     <!-- Custom Cursor -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-heading">
         <div class="container hero-container">
             <div class="hero-content fade-in">
                 {% if hero %}
-                    <h1>{{ hero.title|safe }}</h1>
-                    <p>{{ hero.subtitle }}</p>
+                <h1 id="hero-heading">{{ hero.title|safe }}</h1>
+                <p>{{ hero.subtitle }}</p>
                 {% else %}
-                    <h1>Crafted Stones For <span>Your Space</span></h1>
-                    <p>Explore our premium handmade stone products. We blend traditional art with modern aesthetics to create unique designs for your home and business.</p>
+                <h1 id="hero-heading">Crafted Natural Stone Products for <span>Your Home & Business</span></h1>
+                <p>Premium handmade marble, granite, and sandstone pieces—blending traditional Indian craftsmanship with
+                    contemporary design.</p>
                 {% endif %}
                 <div class="btn-container">
-                    <a href="{{ hero.button_link|default:'/products/' }}" class="btn btn-primary">{{ hero.button_text|default:'Browse Products' }}</a>
-                    <a href="{{ hero.secondary_button_link|default:'#categories' }}" class="btn btn-secondary">{{ hero.secondary_button_text|default:'Our Categories' }}</a>
+                    <a href="{{ hero.button_link|default:'/products/' }}" class="btn btn-primary"
+                        aria-label="Browse our stone products">{{ hero.button_text|default:'Browse Products' }}</a>
+                    <a href="{{ hero.secondary_button_link|default:'#categories' }}" class="btn btn-secondary"
+                        aria-label="Explore product categories">{{ hero.secondary_button_text|default:'Our Categories'
+                        }}</a>
                 </div>
             </div>
             <div class="hero-image fade-in">
                 {% if hero.video %}
-                    <video autoplay muted loop playsinline class="hero-media">
-                        <source src="{{ hero.video.url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                <video autoplay muted loop playsinline class="hero-media"
+                    aria-label="Showcase of Shiv Shakti Stone products">
+                    <source src="{{ hero.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 {% elif hero.image %}
-                    <img src="{{ hero.image.url }}" alt="Beautiful crafted stone" class="hero-media">
+                <img src="{{ hero.image.url }}"
+                    alt="Handcrafted natural stone products by Shiv Shakti Stone – marble, granite, and sandstone for interior and exterior design"
+                    class="hero-media">
                 {% else %}
-                    <img src="{% static 'images/hero-image.jpg' %}" alt="Beautiful crafted stone" class="hero-media">
+                <img src="{% static 'images/hero-image.jpg' %}"
+                    alt="Premium handmade stone products for homes and commercial spaces – Shiv Shakti Stone"
+                    class="hero-media">
                 {% endif %}
             </div>
         </div>
     </section>
 
-    <!-- Categories Section (Replaced Features) -->
-    <section class="features" id="categories"> <!-- Kept 'features' class for styling, but changed ID -->
+    <!-- Categories Section -->
+    <section class="features" id="categories" aria-labelledby="categories-heading">
         <div class="container">
             <div class="section-title fade-in">
-                <h2>Our Product Categories</h2>
-                <p>Discover the quality and craftsmanship in every piece</p>
+                <h2 id="categories-heading">Our Stone Product Categories</h2>
+                <p>Discover hand-finished natural stone collections—each piece crafted with precision and tradition.</p>
             </div>
             <div class="row">
-                
-                <!-- *** THIS IS YOUR DJANGO LOOP *** -->
                 {% for category in categories %}
-                <div class="col-lg-4 col-md-6 mb-4 fade-in">
+                <div class="col-lg-4 col-md-6 mb-4 fade-in" itemscope itemtype="https://schema.org/Product">
                     {% if category.image %}
-                        <img src="{{ category.image.url }}" 
-                             onerror="this.src='https://placehold.co/400x300/a1887f/ffffff?text={{ category.name|urlencode }}'" 
-                             alt="{{ category.name }}" 
-                             class="category-image">
+                    <img src="{{ category.image.url }}"
+                        onerror="this.src='https://placehold.co/400x300/a1887f/ffffff?text={{ category.name|urlencode }}'"
+                        alt="Explore {{ category.name|lower }} stone products – handmade by Shiv Shakti Stone"
+                        class="category-image" itemprop="image">
                     {% else %}
-                        <div class="feature-icon">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                    {% endif %}
-                    
-                    <h3>{{ category.name }}</h3>
-                    
-                    {% if category.description %}
-                        <p>{{ category.description|truncatewords:15 }}</p>
-                    {% else %}
-                        <p>Explore our collection of {{ category.name }}.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-gem" aria-hidden="true"></i>
+                    </div>
                     {% endif %}
 
-                    <!-- Assumed 'category_detail' URL name with slug -->
-                    <a href="{% url 'product_list' category.slug %}" class="btn btn-outline" style="border-radius: 50px; padding: 10px 20px;">View Products</a>
+                    <h3 itemprop="name">{{ category.name }}</h3>
+
+                    {% if category.description %}
+                    <p itemprop="description">{{ category.description|truncatewords:15 }}</p>
+                    {% else %}
+                    <p itemprop="description">Authentic {{ category.name|lower }} stone products for residential and
+                        commercial projects.</p>
+                    {% endif %}
+
+                    <a href="{% url 'product_list' category.slug %}" class="btn btn-outline"
+                        style="border-radius: 50px; padding: 10px 20px;" aria-label="View {{ category.name }} products">
+                        View Products
+                    </a>
                 </div>
                 {% empty %}
                 <div class="col" style="text-align: center; grid-column: 1 / -1;">
                     <p>No product categories are available at the moment. Please check back soon!</p>
                 </div>
                 {% endfor %}
-                <!-- *** END OF DJANGO LOOP *** -->
-
             </div>
         </div>
     </section>
 
-    <!-- Interactive Elements (Re-themed for Stone) -->
-    <section class="interactive-section" id="features">
+    <!-- Services Section -->
+    <section class="interactive-section" id="services" aria-labelledby="services-heading">
         <div class="container">
             <div class="section-title fade-in">
-                <h2>Our Services</h2>
-                <p>Quality and precision you can trust</p>
+                <h2 id="services-heading">Our Stone Craftsmanship Services</h2>
+                <p>Quality, precision, and customization you can trust—from concept to installation.</p>
             </div>
             <div class="interactive-grid">
                 <div class="interactive-card fade-in">
                     <div class="card-content">
-                        <h3>Custom Orders</h3>
-                        <p>Have a unique vision? We can craft custom stone pieces to your exact specifications.</p>
-                          <a class="btn btn-outline" href="{% url 'contact' %}">Book a Call</a>
+                        <h3>Custom Stone Orders</h3>
+                        <p>Have a unique vision? We craft bespoke marble, granite, or sandstone pieces to your exact
+                            dimensions and design.</p>
+                        <a class="btn btn-outline" href="{% url 'contact' %}"
+                            aria-label="Book a consultation for custom stone work">Book a Call</a>
                     </div>
                 </div>
                 <div class="interactive-card fade-in">
                     <div class="card-content">
-                        <h3>Expert Consultation</h3>
-                        <p>Our specialists can help you choose the perfect stone for your project's needs.</p>
-                        <a class="btn btn-outline" href="{% url 'contact' %}">Book a Call</a>
+                        <h3>Expert Stone Consultation</h3>
+                        <p>Our artisans and material specialists help you select the ideal stone type, finish, and
+                            application for your space.</p>
+                        <a class="btn btn-outline" href="{% url 'contact' %}"
+                            aria-label="Speak with a stone expert">Book a Call</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials -->
-    {% comment %} <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Trusted by Architects & Homeowners</h2>
-                <p>Hear from our satisfied customers</p>
-            </div>
-            <div class="testimonial-container">
-                <div class="testimonial fade-in">
-                    <div class="testimonial-content">
-                        "The quality from Shiv Shakti Stone is unmatched. The marble countertops transformed my kitchen. Highly recommend their craftsmanship!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-img">
-                            <img src="{% static 'images/client-1.jpg' %}" 
-                                 onerror="this.src='https://placehold.co/60x60/8d6e63/ffffff?text=A.K.'"
-                                 alt="Amit Kumar">
-                        </div>
-                        <div class="author-info">
-                            <h4>Amit Kumar</h4>
-                            <p>Homeowner, Delhi</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> {% endcomment %}
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Shiv Shakti Stone",
+      "url": "{{ request.build_absolute_uri:request.get_full_path }}",
+      "logo": "{% static 'images/logo.png' %}",
+      "description": "Handcrafted natural stone products including marble, granite, and sandstone for residential and commercial projects across India.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "url": "{% url 'contact' %}"
+      }
+    }
+    </script>
 
-    <!-- CTA Section -->
-    {% comment %} <section class="cta">
-        <div class="container">
-            <h2 class="fade-in">Ready to Start Your Project?</h2>
-            <p class="fade-in">Let us help you bring your vision to life with the finest stone products.</p>
-            <a href="{% url 'contact' %}" class="btn btn-light fade-in">Get In Touch</a>
-        </div>
-    </section> {% endcomment %}
-
-{% endblock %}
+    {% endblock %}
