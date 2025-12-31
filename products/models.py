@@ -8,6 +8,8 @@ class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     image = models.ImageField(upload_to='category', blank=True, null=True)
+    meta_title = models.CharField(max_length=255, blank=True, help_text="SEO Title override")
+    meta_description = models.TextField(blank=True, help_text="SEO Description override")
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -43,6 +45,8 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(upload_to='product/gallery/', blank=True, null=True)
+    meta_title = models.CharField(max_length=255, blank=True, help_text="SEO Title override")
+    meta_description = models.TextField(blank=True, help_text="SEO Description override")
 
     class Meta:
         ordering = ('-is_featured', '-created_at', 'name')

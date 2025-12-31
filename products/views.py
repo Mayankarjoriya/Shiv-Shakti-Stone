@@ -62,6 +62,7 @@ def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
     images = product.images.all()
     features = product.features.all()
+    # ISSUE: Hardcoded domain. Use request.build_absolute_uri or settings.SITE_URL for flexibility.
     domain = 'http://127.0.0.1:8000'
 
     
@@ -101,6 +102,8 @@ def product_detail(request, slug):
 
             # email.content_subtype = "html"
             email.attach_alternative(html_message, "text/html")
+            # POTENTIAL ERROR: email.send() might fail without being logged or handled gracefully.
+            # AAPKE LIYE: fail_silently=False stands, but consider adding try-except for production stability.
             email.send(fail_silently=False)
 
 

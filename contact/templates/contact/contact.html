@@ -1,175 +1,259 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Contact Us | Shiv Shakti Stone – Natural Stone Craftsmen in Sikandara, Jaipur{% endblock %}
-
-{% block meta_description %}
-Visit or contact Shiv Shakti Stone in Sikandara, Jaipur. Call +91 97994 16741 or email shivshaktistone0@gmail.com for
-custom marble, granite & sandstone solutions across India.
-{% endblock %}
-
-{% block extra_head %}
-<meta name="description" content="{{ self.meta_description }}">
-<meta name="keywords"
-    content="stone supplier Jaipur, marble craftsman Sikandara, granite dealer Rajasthan, sandstone exporter India, Shiv Shakti Stone contact">
-<link rel="canonical" href="{{ request.build_absolute_uri }}">
-
-<!-- Open Graph -->
-<meta property="og:title" content="{{ self.title }}">
-<meta property="og:description" content="{{ self.meta_description }}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="{{ request.build_absolute_uri }}">
-<meta property="og:image" content="{% static 'images/hero-image.jpg' %}">
-<meta property="og:site_name" content="Shiv Shakti Stone">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ self.title }}">
-<meta name="twitter:description" content="{{ self.meta_description }}">
-{% endblock %}
+{% block title %}Contact Us | Shiv Shakti Stone{% endblock %}
 
 {% block content %}
-<section class="contact-page-section" aria-labelledby="contact-page-heading">
-    <div class="contact-container">
-        <div class="contact-image">
-            <div class="image-content fade-in">
-                <h2 id="contact-page-heading">Contact Shiv Shakti Stone</h2>
-                <p>We’re based in **Sikandara, Jaipur**, and serve clients across India with premium handmade stone
-                    products—marble, granite, sandstone, and more.</p>
+<section class="contact-modern-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Info Column -->
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="contact-info-wrapper">
+                    <h1 class="main-heading">Contact Us</h1>
+                    <p class="main-desc">Email, call, or complete the form to learn how Shiv Shakti Stone can enhance
+                        your space with premium natural stone.</p>
 
-                <!-- Visible Contact Info (Great for Local SEO) -->
-                <div class="contact-details">
-                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                        <strong>Address:</strong> Shiv Shakti Stone, Jaipur Road, Sikandara, Rajasthan, India
-                    </p>
-                    <p><i class="fas fa-phone" aria-hidden="true"></i>
-                        <strong>Call Us:</strong>
-                        <a href="tel:+919799416741" class="contact-link">+91 97994 16741</a> or
-                        <a href="tel:+918094972696" class="contact-link">+91 80949 72696</a>
-                    </p>
-                    <p><i class="fas fa-envelope" aria-hidden="true"></i>
-                        <strong>Email:</strong>
-                        <a href="mailto:shivshaktistone0@gmail.com" class="contact-link">shivshaktistone0@gmail.com</a>
-                    </p>
+                    <div class="contact-details mt-4">
+                        <p class="contact-item"><i class="fas fa-map-marker-alt me-2"></i> Shiv Shakti Stone, Jaipur
+                            Road, Sikandara, Rajasthan, India</p>
+                        <p class="contact-item"><i class="fas fa-envelope me-2"></i> shivshaktistone0@gmail.com</p>
+                        <p class="contact-item"><i class="fas fa-phone-alt me-2"></i> <a href="tel:+919799416741"
+                                class="text-decoration-none text-dark">+91 97994 16741</a></p>
+                        <p class="contact-item"><i class="fas fa-phone-alt me-2"></i> <a href="tel:+918094972696"
+                                class="text-decoration-none text-dark">+91 80949 72696</a></p>
+                    </div>
+
+                    <div class="support-grid mt-5">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <h4 class="sub-heading">Customer Support</h4>
+                                <p class="sub-desc">Our support team is available around the clock to address any
+                                    concerns or queries you may have.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="sub-heading">Feedback and Suggestions</h4>
+                                <p class="sub-desc">We value your feedback and are continuously working to improve. Your
+                                    input is crucial in shaping our service.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="sub-heading">Media Inquiries</h4>
+                                <p class="sub-desc">For media-related questions or press inquiries, please contact us at
+                                    shivshaktistone0@gmail.com.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <p>We respond to all inquiries within 24 hours. Prefer a site visit? Let us know in your message!</p>
             </div>
-        </div>
 
-        <div class="contact-form fade-in">
-            <h3 class="form-title">Send a Message</h3>
-            <p class="form-subtitle">Have a project in mind? Tell us your requirements.</p>
+            <!-- Right Form Column -->
+            <div class="col-lg-5 offset-lg-1">
+                <div class="contact-form-card">
+                    <h2 class="form-heading">Get in Touch</h2>
+                    <p class="form-subheading">You can reach us anytime</p>
 
-            <form id="contactForm" method="POST" novalidate>
-                {% csrf_token %}
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-user" aria-hidden="true"></i>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Your name"
-                                required>
+                    <form id="contactForm" class="modern-form mt-4">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="form-floating-custom">
+                                    <input type="text" class="form-control" name="first_name" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-floating-custom">
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last name">
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <div class="input-with-icon">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="you@example.com" required>
+                        <div class="form-floating-custom mt-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                                <input type="email" class="form-control" name="email" placeholder="Your email">
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="mobile">Mobile Number</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="+91 98765 43210"
-                            required>
-                    </div>
-                </div>
+                        <div class="form-floating-custom mt-3">
+                            <div class="input-group">
+                                <span class="input-group-text">+91</span>
+                                <span class="input-group-text border-start-0 ps-0"><i
+                                        class="fas fa-chevron-down text-muted" style="font-size: 0.7rem;"></i></span>
+                                <input type="tel" class="form-control" name="phone" placeholder="Phone number">
+                            </div>
+                        </div>
 
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" class="form-control"
-                        placeholder="Describe your project, stone type, size, or location..." rows="5"
-                        required></textarea>
-                </div>
+                        <div class="form-floating-custom mt-3">
+                            <textarea class="form-control" name="message" rows="4"
+                                placeholder="How can we help?"></textarea>
+                        </div>
 
-                <button type="submit" class="btn btn-primary" aria-label="Send your inquiry to Shiv Shakti Stone">Send
-                    Message</button>
+                        <div class="text-end mt-2">
+                            <span class="char-count text-muted" style="font-size: 0.8rem;">0/120</span>
+                        </div>
 
-                <div class="form-footer">
-                    <p>We respect your privacy. Your details are secure and will not be shared.</p>
+                        <button type="submit"
+                            class="btn btn-primary w-100 mt-4 rounded-pill py-3 fw-bold">Submit</button>
+
+                        <p class="privacy-text text-center mt-3 text-muted">
+                            By contacting us, you agree to our <a href="#" class="text-dark fw-bold">Terms of
+                                service</a> and <a href="#" class="text-dark fw-bold">Privacy Policy</a>
+                        </p>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </section>
 
-<!-- Schema.org – Local Business -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Shiv Shakti Stone",
-  "image": "{% static 'images/hero-image.jpg' %}",
-  "url": "{{ request.build_absolute_uri }}",
-  "telephone": "+919799416741",
-  "additionalTelephones": [
-    {
-      "telephone": "+918094972696",
-      "contactType": "Secondary"
-    }
-  ],
-  "email": "shivshaktistone0@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Jaipur Road, Sikandara",
-    "addressLocality": "Sikandara",
-    "addressRegion": "Rajasthan",
-    "postalCode": "",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 26.9124,
-    "longitude": 75.7873
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "opens": "09:00",
-    "closes": "19:00"
-  },
-  "description": "Handmade marble, granite, and sandstone products crafted in Jaipur, Rajasthan. Custom stone solutions for homes and commercial spaces across India."
-}
-</script>
-
 <style>
-    .contact-link {
-        color: #2c3e50;
+    /* Scoped styles for the new design to match the reference */
+    .contact-modern-section {
+        padding: 80px 0;
+        background-color: #f1f4f8;
+        /* Soft blue-grey background */
+        font-family: 'Poppins', sans-serif;
+        /* Ensuring sleek font */
+    }
+
+    .main-heading {
+        font-size: 3.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 20px;
+        letter-spacing: -1px;
+    }
+
+    .main-desc {
+        color: #64748b;
+        font-size: 1.1rem;
+        max-width: 400px;
+        line-height: 1.6;
+    }
+
+    .contact-item {
+        font-size: 1.05rem;
+        color: #334155;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+
+    .support-link {
+        color: #334155;
         text-decoration: underline;
+        font-weight: 500;
     }
 
-    .contact-link:hover {
-        color: #e67e22;
+    .sub-heading {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 10px;
     }
 
-    .contact-details p {
-        margin: 8px 0;
+    .sub-desc {
+        font-size: 0.9rem;
+        color: #64748b;
         line-height: 1.5;
+    }
+
+    /* Form Card Styles */
+    .contact-form-card {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 5px;
+    }
+
+    .form-subheading {
+        color: #94a3b8;
+        font-size: 0.95rem;
+    }
+
+    /* Input Styles matching the clean look */
+    .form-floating-custom input,
+    .form-floating-custom textarea {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 0.95rem;
+        color: #334155;
+        transition: all 0.2s;
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .input-group-text {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-right: none;
+        border-radius: 12px 0 0 12px;
+        color: #94a3b8;
+    }
+
+    .input-group input {
+        border-left: none;
+        border-radius: 0 12px 12px 0 !important;
+    }
+
+    .form-floating-custom input:focus,
+    .form-floating-custom textarea:focus,
+    .form-control:focus {
+        background: white;
+        border-color: var(--primary);
+        /* Theme primary focus */
+        box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.1);
+        outline: none;
+    }
+
+    .form-control::placeholder {
+        color: #cbd5e1;
+    }
+
+    /* Button */
+    .btn-primary {
+        background-color: var(--primary);
+        /* Theme Primary */
+        border: none;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+    }
+
+    .privacy-text {
+        font-size: 0.75rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .contact-info-wrapper {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .main-heading {
+            font-size: 2.5rem;
+        }
+
+        .main-desc {
+            margin: 0 auto;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 </style>
 {% endblock %}

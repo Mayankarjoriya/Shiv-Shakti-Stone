@@ -963,6 +963,53 @@ nav ul li a:hover::after {
     top: 50%;
     transform: translateY(-50%);
     color: var(--gray);
+    z-index: 10; /* Ensure icon stays on top of input */
+    transition: color 0.3s ease;
+    pointer-events: none; /* Let clicks pass through to input */
+}
+
+.input-with-icon .form-control {
+    padding-left: 48px; /* Sufficient space for icon */
+    height: 55px; /* Taller, more modern inputs */
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.input-with-icon .form-control:focus {
+    background-color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.1);
+}
+
+.input-with-icon:focus-within i {
+    color: var(--primary);
+}
+
+.contact-form textarea.form-control {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.contact-form textarea.form-control:focus {
+    background-color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(192, 57, 43, 0.1);
+}
+
+/* Enhancing labels */
+.form-group label {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 0.95rem;
 }
 
 .messages-container {

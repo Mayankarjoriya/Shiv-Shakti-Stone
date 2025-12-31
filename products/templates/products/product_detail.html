@@ -1,43 +1,27 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}{{ product.name }} | Premium {{ product.material|default:'Natural Stone' }} Product | Shiv Shakti
-Stone{% endblock %}
+{% block title %}{% if product.meta_title %}{{ product.meta_title }}{% else %}{{ product.name }} | Premium {{
+product.material|default:'Natural Stone' }} | Shiv Shakti Stone{% endif %}{% endblock %}
 
-{% block meta_description %}
-{{ product.name }} – {{ product.description|truncatewords:25|default:'Handcrafted natural stone product from Shiv Shakti
-Stone, Jaipur. Ideal for '}} {{ product.usage_application|default:'home and commercial spaces' }}. Request a quote
-today.
-{% endblock %}
+{% block meta_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}{{ product.name }}
+– {{ product.description|truncatewords:25|default:'Handcrafted natural stone product from Shiv Shakti Stone, Jaipur.' }}
+Request a quote today.{% endif %}{% endblock %}
 
 {% block extra_head %}
-<meta name="description" content="{{ self.meta_description }}">
-<meta name="keywords" content="
-        {{ product.name|lower }},
-        {% if product.material %}{{ product.material|lower }} product,{% endif %}
-        stone dealer Jaipur,
-        {{ product.material|default:'natural stone' }} supplier India,
-        Shiv Shakti Stone
-    ">
-
-<link rel="canonical" href="{{ request.build_absolute_uri }}">
-
-<!-- Open Graph -->
-<meta property="og:title" content="{{ self.title }}">
-<meta property="og:description" content="{{ self.meta_description }}">
-<meta property="og:type" content="product">
-<meta property="og:url" content="{{ request.build_absolute_uri }}">
-<meta property="og:image"
-  content="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
-<meta property="og:site_name" content="Shiv Shakti Stone">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ self.title }}">
-<meta name="twitter:description" content="{{ self.meta_description }}">
-<meta name="twitter:image"
-  content="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/hero-image.jpg' %}{% endif %}">
+<meta name="keywords"
+  content="{{ product.name|lower }}, {% if product.material %}{{ product.material|lower }} product,{% endif %} stone dealer Jaipur, {{ product.material|default:'natural stone' }} supplier India, Shiv Shakti Stone">
 {% endblock %}
+
+{% block og_title %}{% if product.meta_title %}{{ product.meta_title }}{% else %}{{ product.name }} | Shiv Shakti
+Stone{% endif %}{% endblock %}
+{% block og_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}{{
+product.description|truncatewords:20 }}{% endif %}{% endblock %}
+
+{% block twitter_title %}{% if product.meta_title %}{{ product.meta_title }}{% else %}{{ product.name }}{% endif %}{%
+endblock %}
+{% block twitter_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}{{
+product.description|truncatewords:20 }}{% endif %}{% endblock %}
 
 {% block content %}
 <section class="product-detail-section" aria-labelledby="product-title">

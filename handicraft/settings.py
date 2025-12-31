@@ -74,8 +74,11 @@ else:
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-DEBUG = env("DEBUG")
-SECRET_KEY = env('SECRET_KEY')
+# DEBUG = env("DEBUG")
+DEBUG = True
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'ubmo@!vn19lh6*ss25f#jy6o2_$)3vjmj+9!l)=_ugml#)jgfx'
+
 
 
 
@@ -87,6 +90,8 @@ if allowed_hosts_str:
     ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(",") if host.strip()]
 else:
     # Allow all hosts if not specified (for deployment platforms like Render)
+    # SECURITY WARNING: Allowing all hosts can be risky in production. 
+    # Aapko apni production domain yahan specify karni chahiye.
     ALLOWED_HOSTS = ['*']
 
 
@@ -243,6 +248,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# AAPKE LIYE: Whitenoise storage use karna performance ke liye accha hai.
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 

@@ -7,14 +7,7 @@ from django.contrib.auth import get_user_model
 from django.views.static import serve
 from django.contrib import sitemaps
 from django.contrib.sitemaps.views import sitemap
-from core.sitemaps import StaticViewSitemap
-from django.core.files.base import ContentFile
-from django.http import HttpResponse
-import requests
-from io import BytesIO
-
-
-
+from core.sitemaps import StaticViewSitemap, ProductSitemap, CategorySitemap
 
 
 def healthcheck(request):
@@ -32,6 +25,19 @@ def make_superuser(request):
         return HttpResponse("Superuser created.")
     return HttpResponse("Already exists.")
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'products': ProductSitemap,
+    'categories': CategorySitemap,
+}
+
+def robots_txt(request):
+    lines = [
+        "User-agent: *",
+        "Disallow: /admin/",
+        f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}"
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -39,7 +45,10 @@ urlpatterns = [
     path("products/", include("products.urls")),
     path("contact/", include("contact.urls")),
     path("healthz/", healthcheck),
+    # SECURITY RISK: 'make-superuser/' path should be deleted or protected in production.
     path("make-superuser/", make_superuser),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', robots_txt),
 ]
 
 # MEDIA files (admin se upload wali images)

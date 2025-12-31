@@ -10,11 +10,8 @@
     <title>{% block title %}Shiv Shakti Stone – Premium Handcrafted Stone Products in Jaipur{% endblock %}</title>
 
     <!-- Meta Description (override per page if needed) -->
-    {% block meta_description %}
-    Shiv Shakti Stone offers premium handmade marble, granite, and sandstone products crafted in Sikandara, Jaipur.
-    Custom designs, nationwide delivery. Contact us today!
-    {% endblock %}
-    <meta name="description" content="{{ self.meta_description }}">
+    <meta name="description"
+        content="{% block meta_description %}Shiv Shakti Stone offers premium handmade marble, granite, and sandstone products crafted in Sikandara, Jaipur. Custom designs, nationwide delivery. Contact us today!{% endblock %}">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
@@ -38,8 +35,8 @@
     <link rel="shortcut icon" href="{% static 'core/images/favicon.png' %}">
 
     <!-- Open Graph / Social Meta -->
-    <meta property="og:title" content="{{ self.title }}">
-    <meta property="og:description" content="{{ self.meta_description }}">
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:image" content="{% static 'images/hero-image.jpg' %}">
@@ -47,8 +44,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ self.title }}">
-    <meta name="twitter:description" content="{{ self.meta_description }}">
+    <meta name="twitter:title" content="{% block twitter_title %}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{% endblock %}">
     <meta name="twitter:image" content="{% static 'images/hero-image.jpg' %}">
 
     <!-- Custom CSS -->
