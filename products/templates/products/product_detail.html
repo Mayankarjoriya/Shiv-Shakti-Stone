@@ -18,10 +18,10 @@ Stone{% endif %}{% endblock %}
 {% block og_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}{{
 product.description|truncatewords:20 }}{% endif %}{% endblock %}
 
-{% block twitter_title %}{% if product.meta_title %}{{ product.meta_title }}{% else %}{{ product.name }}{% endif %}{%
-endblock %}
-{% block twitter_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}{{
-product.description|truncatewords:20 }}{% endif %}{% endblock %}
+{% block twitter_title %}{% if product.meta_title %}{{ product.meta_title }}{% else %}{{ product.name }}{% endif %}
+{% endblock %}
+{% block twitter_description %}{% if product.meta_description %}{{ product.meta_description }}{% else %}
+{{ product.description|truncatewords:20 }}{% endif %}{% endblock %}
 
 {% block content %}
 <section class="product-detail-section" aria-labelledby="product-title">
@@ -76,12 +76,13 @@ product.description|truncatewords:20 }}{% endif %}{% endblock %}
             {% if product.dimensions %}<li><strong>Dimensions:</strong> {{ product.dimensions }}</li>{% endif %}
             {% if product.size %}<li><strong>Size:</strong> {{ product.size }}</li>{% endif %}
             {% if product.height %}<li><strong>Height:</strong> {{ product.height }}</li>{% endif %}
-            {% if product.usage_application %}<li><strong>Ideal For:</strong> {{ product.usage_application }}</li>{%
-            endif %}
-            {% if product.model_number %}<li><strong>Model No:</strong> {{ product.model_number }}</li>{% endif %}
+            {% if product.usage_application %}<li><strong>Ideal For:</strong> {{ product.usage_application }}</li>
+            {% endif %}
+            {% if product.model_number %}<li><strong>Model No:</strong> {{ product.model_number }}</li>
+            {% endif %}
             <li><strong>Origin:</strong> Made in India, crafted in Sikandara, Jaipur</li>
-            {% if product.production_capicity %}<li><strong>Production Capacity:</strong> {{ product.production_capicity
-              }}</li>{% endif %}
+            {% if product.production_capicity %}<li><strong>Production Capacity:</strong> {{ product.production_capicity }}</li>
+            {% endif %}
 
             {% for feature in features %}
             <li><strong>{{ feature.name }}:</strong> {{ feature.value }}</li>
